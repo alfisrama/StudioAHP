@@ -1,0 +1,70 @@
+
+<!-- SELECT2 EXAMPLE -->
+<div class="card card-default">
+  <div class="card-header">
+    <h3 class="card-title">Nilai Studio & Konversi</h3>
+    <div class="card-tools">
+      <button type="button" class="btn btn-tool" data-card-widget="collapse">
+        <i class="fas fa-minus"></i>
+      </button>
+    </div>
+  </div>
+  <!-- /.card-header -->
+  <div class="card-body">
+    <div class="row">
+      
+      {{-- Konversi Harga --}}
+      <div class="col-md-3" data-select2-id="46">
+        @if ($errors->any())
+          <div class="form-group {{ $errors->has('konversi_harga') ? 'has-error' : 'has-success' }}">
+        @else
+          <div class="form-group">
+        @endif
+          {!! Form::label('konversi_harga', 'Harga:', ['class' => 'control-label']) !!}
+          {!! Form::text('konversi_harga', null, ['class' => 'form-control', 'id'=>'konversi_harga', 'readonly', 'required']) !!}
+          @if ($errors->has('konversi_harga'))
+            <span class="help-block">{{ $errors->first('konversi_harga') }}</span>
+          @endif
+        </div>
+        <!-- /.form-group -->
+      </div>
+      <!-- /.col -->
+      
+      {{-- Fasilitas --}}
+      <div class="col-md-3" data-select2-id="46">
+        @if ($errors->any())
+          <div class="form-group {{ $errors->has('konversi_fasilitas') ? 'has-error' : 'has-success' }}">
+        @else
+          <div class="form-group">
+        @endif
+          {!! Form::label('konversi_fasilitas', 'Fasilitas:', ['class' => 'control-label']) !!}
+          {!! Form::text('konversi_fasilitas', null, ['class' => 'form-control konversi_fasilitas', 'required',  'id'=>'konversi_fasilitas']) !!}
+          @if ($errors->has('konversi_fasilitas'))
+            <span class="help-block">{{ $errors->first('konversi_fasilitas') }}</span>
+          @endif
+        </div>
+        <!-- /.form-group -->
+      </div>
+      <!-- /.col -->
+      
+      {{-- Waktu Operasional --}}
+      <div class="col-md-3" data-select2-id="46">
+        @if ($errors->any())
+          <div class="form-group {{ $errors->has('waktu_operasional') ? 'has-error' : 'has-success' }}">
+        @else
+          <div class="form-group">
+        @endif
+          {!! Form::label('waktu_operasional', 'Waktu Operasional:', ['class' => 'control-label']) !!}
+          {!! Form::text('waktu_operasional', null, ['class' => 'form-control', 'required',  'onclick'=>'getWaktu()', 'id'=>'konversi_waktu', 'readonly']) !!}
+          @if ($errors->has('waktu_operasional'))
+            <span class="help-block">{{ $errors->first('waktu_operasional') }}</span>
+          @endif
+        </div>
+        <!-- /.form-group -->
+      </div>
+      <!-- /.col -->
+    </div>
+    <!-- /.row -->
+  </div>
+  <!-- /.card-body -->
+</div>
