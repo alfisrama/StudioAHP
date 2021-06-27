@@ -11,13 +11,20 @@ class Booking extends Model
         'id_studio',
         'id_users',
         'ruangan',
+        'tanggal',
         'start',
+        'durasi',
         'end',
         'harga',
         'pembayaran',
         'foto',
     ];
 
+    protected $dates = [
+        'tanggal',
+        'start',
+        'end',
+    ];
     public function studio(){
         return $this->belongsTo('App\Studio', 'id_studio');
     }

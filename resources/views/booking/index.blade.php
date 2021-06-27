@@ -35,22 +35,29 @@
                                     <th>Nama Studio</th>
                                     <th>Nama User</th>
                                     <th>Ruangan</th>
+                                    <th>Tanggal</th>
                                     <th>Start</th>
+                                    <th>Durasi</th>
                                     <th>End</th>
                                     <th>Harga</th>
-                                    <th width="10%">Aksi</th>
+                                    <th width="10%" class="text-center">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach($booking as $booking)
                                 <tr>
                                     <td>{{$booking->studio->nama_studio}}</td>
-                                    <td>{{$booking->user->nama_user}}</td>
-                                    <td>{{$booking->ruangan}}</td>
-                                    <td>{{\Carbon\Carbon::createFromFormat('Y-m-d H:i:s',$booking->start)->format('Y-m-d H:i')}}</td>
-                                    <td>{{\Carbon\Carbon::createFromFormat('Y-m-d H:i:s',$booking->end)->format('Y-m-d H:i')}}</td>
+                                    <td>{{$booking->user->name}}</td>
+                                    <td class="text-center">{{$booking->ruangan}}</td>
+                                    <td>{{$booking->tanggal->format('d-m-Y')}}</td>
+                                    <td>{{$booking->start->format('H:i')}}</td>
+                                    <td>{{$booking->durasi}} Jam</td>
+                                    <td>{{$booking->end->format('H:i')}}</td>
                                     <td>{{$booking->harga}}</td>
-                                    <td></td>
+                                    <td class="text-center">
+                                        <a class="btn btn-sm btn-warning text-center" href="{{url('booking/'.$booking->id.'/edit')}}"><i class="fas fa-edit"></i></a>
+                                        <a class="btn btn-danger btn-sm delete text-center" href="#" booking-id="{{$booking->id}}" booking-nama="{{$booking->studio->nama_studio}}"><i class="fas fa-trash-alt"></i></a>                                
+                                    </td>
                                 </tr>
                                 @endforeach
                             </tbody>
@@ -75,8 +82,24 @@
         $('#table-booking').DataTable({
             "columnDefs": [{
                 "orderable": false,
-                "targets": [5]
+                "targets": [8]
             }],
+        });
+    });
+
+    $('.delete').click(function(){
+        var booking_id = $(this).attr('booking-id');
+        var booking_nama = $(this).attr('booking-nama');
+        swal({
+            title : "Yakin?",
+            text  : "Mau menghapus booking studio "+booking_nama+"?",
+            icon  : "warning",
+            buttons: true,
+            dangerMode: true,
+        }).then((willDelete) => {
+            if (willDelete){
+                window.location = "booking/"+booking_id+"/delete";
+            }
         });
     });
 </script>

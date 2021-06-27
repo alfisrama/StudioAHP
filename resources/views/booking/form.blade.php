@@ -62,14 +62,7 @@
           <div class="form-group">
         @endif
           {!! Form::label('ruangan', 'Ruangan:', ['class' => 'control-label']) !!}
-          {!!Form::select('ruangan',[
-            '1'=>'Latihan',
-            '2'=>'Latihan + Rekaman Live',
-            '3'=>'Latihan + Rekaman Live + Rekaman Tracking',
-            '4'=>'Latihan + Rekaman Live + Rekaman Tracking + Mixing',
-            '5'=>'Latihan + Rekaman Live + Rekaman Tracking + Mixing + Mastering'],
-            null, ['class' => 'form-control', 'required', 'id'=>'ruangan', 'placeholder' => 'Pilih Ruangan...']);
-            !!}
+          {!!Form::select('ruangan', ['0'=>'Pilih studio terlebih dahulu',], null, ['class' => 'form-control ruangan', 'required', 'tabindex'=>'-1', 'id'=>'ruangan', 'placeholder' => 'Pilih Ruangan...']);!!}
           @if ($errors->has('ruangan'))
               <span class="help-block">{{ $errors->first('ruangan') }}</span>
           @endif
@@ -87,7 +80,7 @@
           <div class="input-group-prepend">
             <span class="input-group-text">Rp</span>
           </div>
-          {!! Form::text('harga', null, ['class' => 'form-control harga', 'id'=>'harga', 'onkeyup'=>'inHarga()']) !!}
+          {!! Form::text('harga', null, ['class' => 'form-control harga', 'id'=>'harga']) !!}
           <div class="input-group-append">
             <span class="input-group-text">.00</span>
           </div>
@@ -98,43 +91,66 @@
       </div>
     </div>
     
-    <center>{!! Form::label('waktu_operasional', 'Waktu Operasional', ['class' => 'control-label']) !!}</center>
+    <center>{!! Form::label('waktu_booking', 'Waktu Booking', ['class' => 'control-label']) !!}</center>
     <div class="row">
-      {{-- Buka --}}
-      <div class="col-md-6" data-select2-id="46">
+      {{-- tanggal --}}
+      <div class="col-md-4" data-select2-id="46">
         @if ($errors->any())
-          <div class="form-group {{ $errors->has('buka') ? 'has-error' : 'has-success' }}">
+          <div class="form-group {{ $errors->has('tanggal') ? 'has-error' : 'has-success' }}">
         @else
           <div class="form-group">
         @endif
           <div class="input-group">
             <div class="input-group-prepend">
               <span class="input-group-text"><i class="far fa-clock"></i></span>
+              @php
+                $batas = date("Y-m-d", strtotime('+1 year'));
+              @endphp 
             </div>
-            {!! Form::text('buka', null, ['class' => 'form-control buka', 'data-target'=>'#buka', 'onkeyup'=>'getWaktu()', 'id'=>'buka', 'placeholder'=>'Jam Mulai', 'data-inputmask-alias'=>'datetime', 'data-inputmask-inputformat'=>'HH','data-mask'=>'null', 'required']) !!}
+            {!! Form::date('tanggal', null, ['class' => 'form-control tanggal', 'onchange'=>'getWaktu()', 'id'=>'tanggal', 'placeholder'=>'Jam Mulai', 'min'=> date('Y-m-d'), 'max'=>$batas, 'required']) !!}
           </div>
-          @if ($errors->has('buka'))
-            <span class="help-block">{{ $errors->first('buka') }}</span>
+          @if ($errors->has('tanggal'))
+            <span class="help-block">{{ $errors->first('tanggal') }}</span>
           @endif
         </div>
       </div>
 
-      {{-- Tutup --}}
-      <div class="col-md-6" data-select2-id="46">
+      {{-- Start --}}
+      <div class="col-md-4" data-select2-id="46">
         @if ($errors->any())
-          <div class="form-group {{ $errors->has('tutup') ? 'has-error' : 'has-success' }}">
+          <div class="form-group {{ $errors->has('start') ? 'has-error' : 'has-success' }}">
         @else
           <div class="form-group">
         @endif
-          {{-- {!! Form::label('tutup', 'Tutup:', ['class' => 'control-label']) !!} --}}
           <div class="input-group">
             <div class="input-group-prepend">
               <span class="input-group-text"><i class="far fa-clock"></i></span>
             </div>
-            {!! Form::text('tutup', null, ['class' => 'form-control tutup', 'id'=>'tutup', 'onkeyup'=>'getWaktu()', 'placeholder'=>'Jam Tutup', 'data-inputmask-alias'=>'datetime', 'data-inputmask-inputformat'=>'HH:MM','data-mask'=>'null', 'required']) !!}
+            {!!Form::select('start', ['0'=>'Pilih studio terlebih dahulu',], null, ['class' => 'form-control start', 'required', 'tabindex'=>'-1', 'id'=>'start', 'placeholder' => 'Mulai jam', 'onchange'=>'getDurasi()']);!!}
+            {{-- {!! Form::time('start', null, ['class' => 'form-control start', 'onchange'=>'getWaktu()', 'id'=>'start', 'placeholder'=>'Jam Mulai', 'required']) !!} --}}
           </div>
-          @if ($errors->has('tutup'))
-            <span class="help-block">{{ $errors->first('tutup') }}</span>
+          @if ($errors->has('start'))
+            <span class="help-block">{{ $errors->first('start') }}</span>
+          @endif
+        </div>
+      </div>
+
+      {{-- Durasi --}}
+      <div class="col-md-4" data-select2-id="46">
+        @if ($errors->any())
+          <div class="form-group {{ $errors->has('durasi') ? 'has-error' : 'has-success' }}">
+        @else
+          <div class="form-group">
+        @endif
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text"><i class="far fa-clock"></i></span>
+            </div>
+            {!!Form::select('durasi', ['0'=>'Pilih jam mulai terlebih dahulu',], null, ['class' => 'form-control durasi', 'required', 'tabindex'=>'-1', 'id'=>'durasi', 'placeholder' => 'Durasi', 'onchange'=>'getHarga()']);!!}
+            {{-- {!! Form::time('durasi', null, ['class' => 'form-control durasi', 'id'=>'durasi', 'onkeyup'=>'getWaktu()', 'placeholder'=>'Durasi', 'required']) !!} --}}
+          </div>
+          @if ($errors->has('durasi'))
+            <span class="help-block">{{ $errors->first('durasi') }}</span>
           @endif
         </div>
       </div>  
@@ -150,40 +166,124 @@
 
 @section('script')
 <script>
+  function setNum(num)
+  {
+    if(num > 1000)
+    {
+      return false;
+    }
+    else if(num<1000 && num > 99)
+    {
+      return num.toString();
+    }
+    else if(num < 100 && num > 9)
+    {
+      return num+":00";
+    }
+    else
+    {
+      return "0"+num+":00";
+    }
+  }
+
   function autofill() {
-    var studio = $(".id_studio").val();
+    $('#ruangan').find('option').not(':first').remove();
+    $('#start').find('option').not(':first').remove();
+
+    var studio = $("#id_studio").val();
     $.ajax({
       url : +studio+'/getData',
-      type : "Get",
+      type : "get",
       dataType : 'json',
       data : {},
-      success :function(response) {
-        // var json = data,
-        // obj = JSON.parse(json);
-        $("#harga").val(response[studio].nama_studio);
+      success: function(data) {     
+        // ruangan
+        var jRuangan = data.ruangan[''];
+        if(jRuangan > 0){
+          // Read data and create <option >
+          for(var i=1; i<(jRuangan)+1; i++){
+            var option = "<option value='"+i+"'>"+i+"</option>"; 
+            $("#ruangan").append(option);
+          }
+        }
+
+        // jam
+        var jBuka = parseInt(data.buka['']);
+        var jTutup = parseInt(data.tutup['']);
+        if(jBuka > 0){
+          // Read data and create <option >
+          for(var i=(jBuka); i<(jTutup)+1; i++){
+            var option = "<option value='"+setNum(i)+"'>"+setNum(i)+"</option>"; 
+            $("#start").append(option);
+          }
+        }
       }
     });  
   }
 
-  //   $("#id_studio").change(function() {
-  //   $.ajax({
-  //     url : '/dataS/'+studio,
-  //     data: {},
-  //     success: function(data) {
-  //       if (data.success == true) {
-  //         $("#harga").value = data.info;
-  //       } else {
-  //         alert('Cannot find info');
-  //       }
+  function getDurasi() {
+    $('#durasi').find('option').not(':first').remove();
+    var studio = $("#id_studio").val();
+    $.ajax({
+      url : +studio+'/getData',
+      type : "get",
+      dataType : 'json',
+      data : {},
+      success: function(data) {
+        var jBuka = parseInt(data.buka['']);
+        var jTutup = parseInt(data.tutup['']);
+        var start = parseInt(document.getElementById('start').value);
+        var durasi = jTutup - start;
+        if(jBuka > 0){
+          // Read data and create <option >
+          for(var i=1; i<(durasi)+1; i++){
+            var option = "<option value='"+i+"'>"+i+" Jam</option>"; 
+            $("#durasi").append(option);
+          }
+        }
+      }
+    });
+  }
 
-  //     },
-  //     error: function(jqXHR, textStatus, errorThrown) {}
-  //   });
-  // }); 
+  function getHarga() {
+    var durasi = $("#durasi").val();
+    var studio = $("#id_studio").val();
+    $.ajax({
+      url : +studio+'/getData',
+      type : "get",
+      dataType : 'json',
+      data : {},
+      success: function(data) {
+        var harga = parseFloat(data.harga[''].replace(/,/gi,''));
+        if (durasi != 0) {
+          var tHarga = harga * durasi;
+          document.getElementById('harga').value = tHarga;
+        } else {
+          document.getElementById('harga').value = '0';
+        }
+      }
+    });
+  }
+
+  function coba(){
+  	var kalender = document.getElementById('kalender').value;
+    var mulai = document.getElementById('mulai').value;
+    var selesai = document.getElementById('selesai').value;
+    var start = new Date(kalender+' '+mulai);
+    var end = new Date(kalender+' '+selesai);
+
+      //To calculate the time difference of two dates
+  	var In_Time = start.getTime() - end.getTime();
+    
+  	// To calculate the no. of days between two dates
+  	var In_Days = In_Time / (1000 * 3600);
+    
+    alert('Execution time: ' + In_Days);
+  }
 
   $(function (){
     // mask
-    // $('.harga').mask('#,###', {reverse: true});
+    $('.harga').mask('#,###', {reverse: true});
     
     $('#id_users').select2({
       theme: 'bootstrap4'
