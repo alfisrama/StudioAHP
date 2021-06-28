@@ -25,7 +25,7 @@
         @endif
           {!! Form::label('id_users', 'Nama User:', ['class' => 'control-label']) !!}
           @if(!empty($studio))
-            {!! Form::select('id_users', $users, null, ['class' => 'form-control id_users select2-hidden-accessible', 'id' => 'id_users', 'onchange'=>'autofill()', 'placeholder' => 'Pilih Studio', 'data-select2-id'=>'17', 'style'=>'width: 100%;', 'tabindex'=>'-1', 'aria-hidden'=>'true', 'required']) !!}  
+            {!! Form::select('id_users', $users, null, ['class' => 'form-control id_users select2-hidden-accessible', 'id' => 'id_users', 'placeholder' => 'Pilih Studio', 'data-select2-id'=>'17', 'style'=>'width: 100%;', 'tabindex'=>'-1', 'aria-hidden'=>'true', 'required']) !!}  
           @else
             <p>Tidak ada pilihan Studio!</p>
           @endif

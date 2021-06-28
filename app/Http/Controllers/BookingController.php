@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Booking;
 use App\Studio;
+use App\Room;
 use DB;
 use Illuminate\Http\Request;
 
@@ -29,37 +30,51 @@ class BookingController extends Controller
 
     public function store(Request $request, Booking $booking)
     {
-        // $lra->id_users      = Auth::user()->id;
         $id_studio = $request->id_studio;
         $ruangan   = $request->ruangan;
         $tanggal   = $request->tanggal;
         $start     = $request->start;
         $durasi    = $request->durasi;
         $end       = date("H:i", strtotime($start. '+'.$durasi.'hours'));
+        $endHour   = date("H:i", strtotime($start. '+1 hours'));
         
-        // $query = Lra::where('tanggal', $tanggal);
-        $query = Booking::where('id_studio', $id_studio)
-                    ->where('ruangan', $ruangan)
-                    ->where('tanggal', $tanggal)
-                    ->whereBetween('start', [$start, $end])
-                    ->whereBetween('end', [$start, $end])
-                    ->exists();
-        
-        // $exists = Booking::whereBetween('start', [$start, $end])->whereBetween('end', [$start, $end])->exists();
+        $query = room::
+                        where('id_studio', $id_studio)
+                        ->where('ruangan', $ruangan)
+                        ->where('tanggal', $tanggal)
+                        ->whereBetween('start', [$start, $end])
+                        ->WhereBetween('end', [$start, $end])
+                        ->exists();
 
-        
-        // $booking->id_studio = $id_studio;
-        // $booking->id_users  = $request->id_users;
-        // $booking->ruangan   = $ruangan;
-        // $booking->tanggal   = $tanggal;
-        // $booking->start     = $start;
-        // $booking->durasi    = $durasi;
-        // $booking->end       = $end;
-        // $booking->harga     = $request->harga;
-        // $booking->save();
-        
-        dd($query);
-        // return redirect('booking')->with('sukses', 'Data booking berhasil ditambah');
+        if ($query == true) {
+            return back()->withInput()->with('failBook', 'Silahkan pilih tanggal/ruangan/jam lainnya!');
+        }else {
+            $booking->id_studio = $id_studio;
+            $booking->id_users  = $request->id_users;
+            $booking->ruangan   = $ruangan;
+            $booking->tanggal   = $tanggal;
+            $booking->start     = $start;
+            $booking->durasi    = $durasi;
+            $booking->end       = $end;
+            $booking->harga     = $request->harga;
+            $booking->save();
+            
+            for ($i=0; $i < $durasi ; $i++) { 
+                //save room
+                $room = new Room;
+                $room->id_studio = $id_studio;
+                $room->ruangan   = $ruangan;
+                $room->tanggal   = $tanggal;
+                $room->start     = date("H:i", strtotime($start. '+'.$i.'hours'));
+                $room->end       = date("H:i", strtotime($endHour. '+'.$i.'hours'));
+                $booking->room()->save($room);
+            }
+
+            // $lra->id_users      = Auth::user()->id; 
+            // $exists = Booking::whereBetween('start', [$start, $end])->whereBetween('end', [$start, $end])->exists();
+            // dd($query);
+            return redirect('booking')->with('sukses', 'Booking berhasil');
+        }
     }
 
     public function show(Booking $booking)

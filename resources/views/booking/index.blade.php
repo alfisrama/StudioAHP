@@ -56,7 +56,7 @@
                                     <td>{{$booking->harga}}</td>
                                     <td class="text-center">
                                         <a class="btn btn-sm btn-warning text-center" href="{{url('booking/'.$booking->id.'/edit')}}"><i class="fas fa-edit"></i></a>
-                                        <a class="btn btn-danger btn-sm delete text-center" href="#" booking-id="{{$booking->id}}" booking-nama="{{$booking->studio->nama_studio}}"><i class="fas fa-trash-alt"></i></a>                                
+                                        <a class="btn btn-danger btn-sm delete text-center" href="#" booking-id="{{$booking->id}}" booking-nama="{{$booking->user->name}}"><i class="fas fa-trash-alt"></i></a>                                
                                     </td>
                                 </tr>
                                 @endforeach
@@ -92,7 +92,7 @@
         var booking_nama = $(this).attr('booking-nama');
         swal({
             title : "Yakin?",
-            text  : "Mau menghapus booking studio "+booking_nama+"?",
+            text  : "Mau membatalkan booking "+booking_nama+"?",
             icon  : "warning",
             buttons: true,
             dangerMode: true,

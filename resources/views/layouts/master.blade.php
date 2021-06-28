@@ -172,7 +172,13 @@
         timer: 3000,
       });
     @endif
-
+    
+    @if (Session::has('failBook'))
+      swal("Ruangan tidak dapat dipesan","{{Session::get('failBook')}}", "error",{
+        
+      });
+    @endif
+    
     $(document).ready(function() {
       $('.data-table').DataTable({
         "columnDefs": [{

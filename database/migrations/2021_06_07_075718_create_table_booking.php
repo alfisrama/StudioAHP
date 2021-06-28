@@ -20,15 +20,16 @@ class CreateTableBooking extends Migration
             $table->integer('ruangan');
             $table->date('tanggal');
             $table->time('start');
+            $table->integer('durasi');
             $table->time('end');
             $table->enum('pembayaran', ['Ditempat','Transfer'])->nullable();
             $table->string('foto')->nullable();
             $table->timestamps();
 
-            //setFK penjualan --- studio
+            //setFK booking --- studio
             $table->foreign('id_studio')->references('id')->on('studio')->onDelete('cascade')->onUpdate('cascade');
             
-            //setFK penjualan --- customer
+            //setFK booking --- customer
             $table->foreign('id_users')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
         });
     }

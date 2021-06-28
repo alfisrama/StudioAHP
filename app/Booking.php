@@ -25,11 +25,16 @@ class Booking extends Model
         'start',
         'end',
     ];
+    
     public function studio(){
         return $this->belongsTo('App\Studio', 'id_studio');
     }
 
     public function user(){
         return $this->belongsTo('App\User', 'id_users');
+    }
+
+    public function room(){
+        return $this->hasMany('App\Room', 'id_booking');
     }
 }

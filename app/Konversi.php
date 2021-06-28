@@ -6,8 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Konversi extends Model
 {
-    protected $table = 'konversi';
-    protected $primaryKey = 'id_studio';
+    protected $table        = 'konversi';
+    protected $primaryKey   = 'id_studio';
     protected $hidden       = ['created_at','updated_at'];
     protected $fillable = [
         'id_studio',
@@ -15,7 +15,7 @@ class Konversi extends Model
         'kualitas_alat', 
         'kualitas_ruangan', 
         'harga',
-        'pelayanan', 
+        'pelayanan',
         'fasilitas',
         'waktu_operasional',
         'suasana_studio', 
