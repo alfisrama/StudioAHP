@@ -2,29 +2,31 @@
 
 namespace App\Http\Controllers;
 
+use App\Booking;
+use App\Studio;
+use App\User;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
     public function __construct()
     {
-        // $this->middleware('auth');
+        $this->middleware('auth', ['except' => ['index']]);
+        $this->middleware('adminOnly', ['except' => ['index']]);
     }
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
     public function index()
     {
-        $halaman = 'Dashboard';
-        // return view('home', compact('halaman'));
+        $halaman = 'Studio AHP';
         return view('websites.index', compact('halaman'));
+    }
+
+    public function dashboard()
+    {
+        $halaman = 'Dashboard';
+        $studio = Studio::all()->count();
+        $users = User::where('level', 'customer')->count();
+        $booking = Booking::all()->count();
+        return view('home', compact('halaman', 'studio', 'users', 'booking'));
     }
 }

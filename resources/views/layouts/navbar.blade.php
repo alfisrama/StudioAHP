@@ -5,10 +5,7 @@
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="index3.html" class="nav-link">Home</a>
-      </li>
-      <li class="nav-item d-none d-sm-inline-block">
-        <a href="#" class="nav-link">Contact</a>
+        <a href="{{url('/')}}" class="nav-link">Home</a>
       </li>
     </ul>
 
@@ -41,5 +38,24 @@
           <i class="fas fa-expand-arrows-alt"></i>
         </a>
       </li>
+
+      @if (Auth::check())
+      <li class="nav-item dropdown show">
+        <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" class="nav-link dropdown-toggle"><span>{{ Auth::user()->name }}</span></a>
+        <ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 shadow" style="left: 0px; right: inherit;">
+          <li><a href="{{url('user/'.Auth::user()->id.'/edit')}}" class="dropdown-item"><i class="fas fa-user"></i> Profile</a></li>
+          <li>
+            <a href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();" class="dropdown-item">
+              <i class="fas fa-sign-out-alt"></i> <span>{{ __('Logout') }}</span>
+              <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">@csrf</form>
+            </a>
+          </li>
+        </ul>
+      </li>
+      @else
+      <li class="dropdown-item">
+        <a href="{{ route('login') }}"><span>{{ __('Login') }}</span></a>
+      </li>
+      @endif
     </ul>
   </nav>

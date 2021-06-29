@@ -10,7 +10,6 @@
         background: url("{{asset('assets/img/testimonials-bg.jpg')}}") top center;
         background-size: cover;
         position: relative;
-        border-bottom: 1px solid #222;
     }
 </style>
 <div class="container">
@@ -73,6 +72,10 @@
                 <div class="card-footer">
                     <a class="btn btn-link" href="{{ route('register') }}">
                         {{ __('Klik disini untuk daftar member baru!') }}
+                    </a>
+                    
+                    <a class="btn btn-link" href="{{ url('/') }}">
+                        {{ __('Kembali ke Home') }}
                     </a>
                 </div>
             </div>

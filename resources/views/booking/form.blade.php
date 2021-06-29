@@ -5,7 +5,7 @@
 <!-- SELECT2 EXAMPLE -->
 <div class="card card-default">
   <div class="card-header">
-    <h3 class="card-title">Data Studio</h3>
+    <h3 class="card-title">Form booking studio musik</h3>
     <div class="card-tools">
       <button type="button" class="btn btn-tool" data-card-widget="collapse">
         <i class="fas fa-minus"></i>
@@ -17,7 +17,7 @@
     <div class="row">
 
       {{-- Users --}}
-      <div class="col-md-6" data-select2-id="46">
+      {{-- <div class="col-md-6" data-select2-id="46">
         @if ($errors->any())
           <div class="form-group {{ $errors->has('id_users') ? 'has-error' : 'has-success' }}">
         @else
@@ -33,7 +33,7 @@
             <span class="help-block">{{ $errors->first('id_users') }}</span>
           @endif
         </div>
-      </div>
+      </div> --}}
 
       {{-- Studio --}}
       <div class="col-md-6" data-select2-id="46">
@@ -68,27 +68,6 @@
           @endif
         </div>
       </div>
-
-      {{-- Harga --}}
-      <div class="col-md-6" data-select2-id="46">
-        @if ($errors->any())
-          <div class="form-group input-group {{ $errors->has('harga') ? 'has-error' : 'has-success' }}">
-        @else
-          <div class="form-group input-group">
-        @endif
-          {!! Form::label('harga', 'Harga:', ['class' => 'control-label input-group']) !!}
-          <div class="input-group-prepend">
-            <span class="input-group-text">Rp</span>
-          </div>
-          {!! Form::text('harga', null, ['class' => 'form-control harga', 'id'=>'harga']) !!}
-          <div class="input-group-append">
-            <span class="input-group-text">.00</span>
-          </div>
-          @if ($errors->has('harga'))
-              <span class="help-block">{{ $errors->first('harga') }}</span>
-          @endif
-        </div>
-      </div>
     </div>
     
     <center>{!! Form::label('waktu_booking', 'Waktu Booking', ['class' => 'control-label']) !!}</center>
@@ -102,7 +81,7 @@
         @endif
           <div class="input-group">
             <div class="input-group-prepend">
-              <span class="input-group-text"><i class="far fa-clock"></i></span>
+              <span class="input-group-text"><i class="far fa-calendar"></i></span>
               @php
                 $batas = date("Y-m-d", strtotime('+1 year'));
               @endphp 
@@ -156,6 +135,26 @@
       </div>  
     </div>
     <!-- /.row -->
+    {{-- Harga --}}
+    <div class="" data-select2-id="46">
+      @if ($errors->any())
+        <div class="form-group input-group {{ $errors->has('harga') ? 'has-error' : 'has-success' }}">
+      @else
+        <div class="form-group input-group">
+      @endif
+        {!! Form::label('harga', 'Harga:', ['class' => 'control-label input-group']) !!}
+        <div class="input-group-prepend">
+          <span class="input-group-text">Rp</span>
+        </div>
+        {!! Form::text('harga', null, ['class' => 'form-control harga', 'id'=>'harga']) !!}
+        <div class="input-group-append">
+          <span class="input-group-text">.00</span>
+        </div>
+        @if ($errors->has('harga'))
+            <span class="help-block">{{ $errors->first('harga') }}</span>
+        @endif
+      </div>
+    </div>
   </div>
   <!-- /.card-body -->
 </div>

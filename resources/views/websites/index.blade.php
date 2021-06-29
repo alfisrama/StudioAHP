@@ -61,6 +61,12 @@
             <li class="drop-down"><a href=""><span>{{ Auth::user()->name }}</span></a>
               <ul>
                 <li><a href="{{url('user/'.Auth::user()->id.'/edit')}}"><i class="bx bxs-user"></i> Profile</a></li>
+                @if (Auth::check() && Auth::user()->level == ('admin'))
+                <li><a href="{{url('dashboard')}}"><i class="bx bxs-dashboard"></i> Dashboard Admin</a></li>
+                @endif
+                @if (Auth::check() && Auth::user()->level == ('operator'))
+                <li><a href="{{url('booking')}}"><i class="bx bxs-dashboard"></i> Data Booking</a></li>
+                @endif
                 <li>
                   <a href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
                     <i class="bx bxs-door-open"></i> <span>{{ __('Logout') }}</span>
@@ -234,30 +240,31 @@
             <div style="background-image: url(assets/img/about.jpg)" data-aos="fade-right" class="image col-xl-5 d-flex align-items-stretch justify-content-center justify-content-lg-start"></div>
             <div class="col-xl-7 pt-4 pt-lg-0 d-flex align-items-stretch">
               <div class="content d-flex flex-column justify-content-center" data-aos="fade-left">
-                <h3>Voluptatem dignissimos provident quasi</h3>
+                <h3>Sistem pendukung keputusan pemilihan studio musik</h3>
                 <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Duis aute irure dolor in reprehenderit
+                  Aplikasi ini merupakan sebuah implementasi dari sistem pendukung keputusan yang menggunakan metode Analytical Hierarchy Process,
+                  pada aplikasi ini terdapat fitur diantaranya
                 </p>
                 <div class="row">
                   <div class="col-md-6 icon-box" data-aos="zoom-in" data-aos-delay="100">
                     <i class="bx bx-receipt"></i>
-                    <h4>Corporis voluptates sit</h4>
-                    <p>Consequuntur sunt aut quasi enim aliquam quae harum pariatur laboris nisi ut aliquip</p>
+                    <h4>Mendata Studio Musik</h4>
+                    <p>Pada aplikasi ini admin dapat menyimpan data-data studio musik</p>
+                  </div>
+                  <div class="col-md-6 icon-box" data-aos="zoom-in" data-aos-delay="100">
+                    <i class="bx bx-calendar"></i>
+                    <h4>Melakukan Booking</h4>
+                    <p>Pada aplikasi ini pengguna dapat melakukan booking studio musik</p>
                   </div>
                   <div class="col-md-6 icon-box" data-aos="zoom-in" data-aos-delay="200">
                     <i class="bx bx-cube-alt"></i>
-                    <h4>Ullamco laboris nisi</h4>
-                    <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt</p>
+                    <h4>Melihat Proses Perangkingan</h4>
+                    <p>Pada aplikasi ini admin dapat melihat proses perangkingan studio musik menggunakan metode AHP</p>
                   </div>
                   <div class="col-md-6 icon-box" data-aos="zoom-in" data-aos-delay="300">
                     <i class="bx bx-images"></i>
-                    <h4>Labore consequatur</h4>
-                    <p>Aut suscipit aut cum nemo deleniti aut omnis. Doloribus ut maiores omnis facere</p>
-                  </div>
-                  <div class="col-md-6 icon-box" data-aos="zoom-in" data-aos-delay="400">
-                    <i class="bx bx-shield"></i>
-                    <h4>Beatae veritatis</h4>
-                    <p>Expedita veritatis consequuntur nihil tempore laudantium vitae denat pacta</p>
+                    <h4>Melihat Rangking Studio Musik</h4>
+                    <p>Pada aplikasi ini pengguna dapat melihat rangking studio musik yang dihasilkan dengan menggunakan metode AHP</p>
                   </div>
                 </div>
               </div><!-- End .content-->
@@ -288,11 +295,10 @@
             <div class="col-lg-5 col-md-6 footer-links">
               <h4>Useful Links</h4>
               <ul>
-                <li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li>
-                <li><i class="bx bx-chevron-right"></i> <a href="#">About us</a></li>
-                <li><i class="bx bx-chevron-right"></i> <a href="#">Services</a></li>
-                <li><i class="bx bx-chevron-right"></i> <a href="#">Terms of service</a></li>
-                <li><i class="bx bx-chevron-right"></i> <a href="#">Privacy policy</a></li>
+                <li><i class="bx bx-chevron-right"></i> <a href="#header">Home</a></li>
+                <li><i class="bx bx-chevron-right"></i> <a href="#features">Studio</a></li>
+                <li><i class="bx bx-chevron-right"></i> <a href="#about">About</a></li>
+                <li><i class="bx bx-chevron-right"></i> <a href="{{url('booking/create')}}">Booking</a></li>
               </ul>
             </div>
 
@@ -300,8 +306,8 @@
               <h4>Social Media</h4>
               <p>Temukan saya disini</p>
               <div class="social-links mt-3">
-                <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
-                <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+                <a href="https://www.facebook.com/malfisr" class="facebook"><i class="bx bxl-facebook"></i></a>
+                <a href="https://www.instagram.com/alfis_rama/" class="instagram"><i class="bx bxl-instagram"></i></a>
               </div>
             </div>
 

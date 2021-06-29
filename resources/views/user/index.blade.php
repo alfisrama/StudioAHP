@@ -98,8 +98,7 @@
         $('#table-user').DataTable({
             "columnDefs": [{
                 "orderable": false,
-                "targets": [6],
-                "searching" : true,
+                "targets": [5],
             }],
         });
     });

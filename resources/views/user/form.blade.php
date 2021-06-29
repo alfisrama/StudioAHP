@@ -68,7 +68,7 @@
           <div class="form-group">
         @endif
           {!! Form::label('password', 'Password:', ['class' => 'control-label']) !!}
-          {!! Form::password('password', ['class' => 'form-control', 'required']) !!}        
+          {!! Form::password('password', ['class' => 'form-control']) !!}        
           @if ($errors->has('password'))
             <span class="help-block">{{ $errors->first('password') }}</span>
           @endif
@@ -83,7 +83,7 @@
           <div class="form-group">
         @endif
           {!! Form::label('password_confirmation', 'Password Confirmation:', ['class' => 'control-label']) !!}
-          {!! Form::password('password_confirmation', ['class' => 'form-control', 'required']) !!}        
+          {!! Form::password('password_confirmation', ['class' => 'form-control']) !!}        
           @if ($errors->has('password_confirmation'))
             <span class="help-block">{{ $errors->first('password_confirmation') }}</span>
           @endif

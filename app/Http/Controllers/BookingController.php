@@ -7,18 +7,26 @@ use App\Studio;
 use App\Room;
 use DB;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class BookingController extends Controller
 {
     public function __construct() {
-        // $this->middleware('auth');
+        $this->middleware('auth');
         // $this->middleware('adminOnly', ['except' => ['edit', 'update']]);
     }
 
     public function index()
     {   
         $halaman = 'Data Booking';
-        $booking = Booking::all();
+        $opr = Studio::where('id_users', Auth::user()->id)->pluck('id')->first();
+        if(Auth::user()->level == 'admin'){
+            $booking = Booking::all();
+        }else if (Auth::user()->level == 'operator') {
+            $booking = Booking::all()->where('id_studio', $opr);
+        }else{
+            $booking = Booking::all()->where('id_users', Auth::user()->id);
+        }
         return view('booking.index', compact('booking', 'halaman'));
     }
 
@@ -50,7 +58,7 @@ class BookingController extends Controller
             return back()->withInput()->with('failBook', 'Silahkan pilih tanggal/ruangan/jam lainnya!');
         }else {
             $booking->id_studio = $id_studio;
-            $booking->id_users  = $request->id_users;
+            $booking->id_users  = Auth::user()->id;
             $booking->ruangan   = $ruangan;
             $booking->tanggal   = $tanggal;
             $booking->start     = $start;
@@ -90,7 +98,7 @@ class BookingController extends Controller
 
     public function update(Request $request, Booking $booking)
     {
-        return redirect('booking')->with('sukses', 'Data booking berhasil diubah');
+        // return redirect('booking')->with('sukses', 'Data booking berhasil diubah');
     }
 
     public function destroy(Booking $booking)

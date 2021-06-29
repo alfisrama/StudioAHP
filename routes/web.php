@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
+Route::get('dashboard', 'HomeController@dashboard')->name('dashboard');
 
 Route::resource('studio', 'StudioController');
 Route::get('studio/{studio}/delete', 'StudioController@destroy');

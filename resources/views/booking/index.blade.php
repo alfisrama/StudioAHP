@@ -55,8 +55,7 @@
                                     <td>{{$booking->end->format('H:i')}}</td>
                                     <td>{{$booking->harga}}</td>
                                     <td class="text-center">
-                                        <a class="btn btn-sm btn-warning text-center" href="{{url('booking/'.$booking->id.'/edit')}}"><i class="fas fa-edit"></i></a>
-                                        <a class="btn btn-danger btn-sm delete text-center" href="#" booking-id="{{$booking->id}}" booking-nama="{{$booking->user->name}}"><i class="fas fa-trash-alt"></i></a>                                
+                                        <a class="btn btn-danger btn-sm delete text-center" href="#" booking-id="{{$booking->id}}" booking-nama="{{$booking->user->name}}">Batalkan</a>                                
                                     </td>
                                 </tr>
                                 @endforeach

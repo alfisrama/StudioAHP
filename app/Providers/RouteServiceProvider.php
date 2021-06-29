@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 class RouteServiceProvider extends ServiceProvider
 {
@@ -21,7 +22,10 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @var string
      */
+    
     public const HOME = '/';
+
+    public const DASHBOARD = 'dashboard';
 
     /**
      * Define your route model bindings, pattern filters, etc.

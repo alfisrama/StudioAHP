@@ -9,8 +9,8 @@ use Illuminate\Http\Request;
 class StudioController extends Controller
 {
     public function __construct() {
-        // $this->middleware('auth');
-        // $this->middleware('adminOnly', ['except' => ['edit', 'update']]);
+        $this->middleware('auth');
+        $this->middleware('adminOnly');
     }
 
     public function index()
