@@ -24,6 +24,7 @@ class HomeController extends Controller
     public function index()
     {
         $halaman = 'Dashboard';
-        return view('home', compact('halaman'));
+        // return view('home', compact('halaman'));
+        return view('websites.index', compact('halaman'));
     }
 }

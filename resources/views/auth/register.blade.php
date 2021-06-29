@@ -1,7 +1,19 @@
-@extends('layouts.app')
-
-@section('content')
-<div class="container">
+@extends('layouts.master2')
+@php
+    $halaman = 'Register';
+@endphp
+@section('polos')
+<style>
+    body {
+        width: 100%;
+        height: 80vh;
+        background: url("{{asset('assets/img/hero-bg.jpg')}}") top center;
+        background-size: cover;
+        position: relative;
+        border-bottom: 1px solid #222;
+    }
+</style><div class="container">
+    <div style="transform: translate(0%, 30%)">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
@@ -86,6 +98,7 @@
                 </div>
             </div>
         </div>
+    </div>
     </div>
 </div>
 @endsection

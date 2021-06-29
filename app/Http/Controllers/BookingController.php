@@ -84,8 +84,8 @@ class BookingController extends Controller
 
     public function edit(Booking $booking)
     {
-        $halaman = 'Tambah Data Booking';
-        return view('booking.edit', compact('halaman', 'booking'));
+        // $halaman = 'Tambah Data Booking';
+        // return view('booking.edit', compact('halaman', 'booking'));
     }
 
     public function update(Request $request, Booking $booking)

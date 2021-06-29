@@ -59,33 +59,8 @@
       <img class="animation__shake" src="{{ asset('bootstrap/dist/img/musicLogoo.png') }}" alt="Logo" height="150" width="150">
     </div>
     
-    <!-- Navbar -->
-    @include('layouts.navbar')
-    <!-- /.navbar -->
-
-    <!-- Main Sidebar Container -->
-    @include('layouts.sidebar')
-    <!-- /.sidebar -->
+      @yield('polos')
     
-    <!-- Content Wrapper. Contains page content -->
-    <div class="content-wrapper">
-      @yield('main')
-    </div>
-    <!-- /.content-wrapper -->
-    
-    <footer class="main-footer">
-      @yield('footer')
-      &copy; Copyright <strong><span>SPK Studio Music</span></strong>. All Rights Reserved
-      <div class="float-right d-none d-sm-inline-block">
-        <b>Version</b> 1.0
-      </div>
-    </footer>
-
-    <!-- Control Sidebar -->
-    <aside class="control-sidebar control-sidebar-dark">
-      <!-- Control sidebar content goes here -->
-    </aside>
-    <!-- /.control-sidebar -->
   </div>
   <!-- ./wrapper -->
 
@@ -164,27 +139,6 @@
   <script src="{{ asset('js/jquery.mask.min.js')}}"></script>
   <!-- sweetalert -->
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-  
-  <script>
-    @if (Session::has('sukses'))
-      swal("Yay!","{{Session::get('sukses')}}", "success",{
-        timer: 3000,
-      });
-    @endif
-    
-    @if (Session::has('failBook'))
-      swal("Ruangan tidak dapat dipesan","{{Session::get('failBook')}}", "error",{
-        
-      });
-    @endif
-    
-    $(document).ready(function() {
-      $('.data-table').DataTable({
-        "columnDefs": [{
-        }],
-      });
-    });
-  </script>
   @yield('script')
 </body>
 </html>

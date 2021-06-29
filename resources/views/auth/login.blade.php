@@ -1,11 +1,27 @@
-@extends('layouts.app')
-
-@section('content')
+@extends('layouts.master2')
+@php
+    $halaman = 'Login';
+@endphp
+@section('polos')
+<style>
+    body {
+        width: 100%;
+        height: 80vh;
+        background: url("{{asset('assets/img/testimonials-bg.jpg')}}") top center;
+        background-size: cover;
+        position: relative;
+        border-bottom: 1px solid #222;
+    }
+</style>
 <div class="container">
+    <div style="transform: translate(0%, 20%)">
+    <center>
+        <h1 class="text-light"><img src="{{ asset('bootstrap/dist/img/musicLogo.png') }}" alt="" class="img-fluid"><span> SPK Studio Music</span></a></h1>
+    </center>
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Login') }}</div>
+                <div class="card-header text-center">{{ __('Login') }}</div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('login') }}">
@@ -39,18 +55,6 @@
                             </div>
                         </div>
 
-                        <div class="form-group row">
-                            <div class="col-md-6 offset-md-4">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-
-                                    <label class="form-check-label" for="remember">
-                                        {{ __('Remember Me') }}
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-
                         <div class="form-group row mb-0">
                             <div class="col-md-8 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
@@ -66,8 +70,14 @@
                         </div>
                     </form>
                 </div>
+                <div class="card-footer">
+                    <a class="btn btn-link" href="{{ route('register') }}">
+                        {{ __('Klik disini untuk daftar member baru!') }}
+                    </a>
+                </div>
             </div>
         </div>
     </div>
+</div>
 </div>
 @endsection

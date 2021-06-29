@@ -34,7 +34,6 @@
                             <thead>
                                 <tr class="text-center">
                                     <th>Nama User</th>
-                                    <th>Nomor Identitas</th>
                                     <th>Telefon</th>
                                     <th>E-mail</th>
                                     <th>Level</th>
@@ -46,7 +45,6 @@
                                 @foreach($user as $user)
                                 <tr>
                                     <td>{{$user->name}}</td>
-                                    <td>{{$user->no_identitas}}</td>
                                     <td>{{$user->telefon}}</td>
                                     <td>{{$user->email}}</td>
                                     <td>{{$user->level}}</td>
@@ -69,7 +67,6 @@
                             <tfoot>
                                 <tr class="text-center">
                                     <th>Nama User</th>
-                                    <th>Nomor Identitas</th>
                                     <th>Telefon</th>
                                     <th>E-mail</th>
                                     <th>Level</th>

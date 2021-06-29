@@ -29,21 +29,6 @@
           @endif
         </div>
       {{-- </div> --}}
-
-      {{-- Nomor Identitas --}}
-      {{-- <div class="col-md-6" data-select2-id="46"> --}}
-        @if ($errors->any())
-          <div class="form-group {{ $errors->has('no_identitas') ? 'has-error' : 'has-success' }}">
-        @else
-          <div class="form-group">
-        @endif
-          {!! Form::label('no_identitas', 'Nomor Identitas:', ['class' => 'control-label']) !!}
-          {!! Form::text('no_identitas', null, ['class' => 'form-control', 'required']) !!}
-          @if ($errors->has('no_identitas'))
-            <span class="help-block">{{ $errors->first('no_identitas') }}</span>
-          @endif
-        </div>
-      {{-- </div> --}}
            
       {{-- Telefon --}}
       {{-- <div class="col-md-6" data-select2-id="46"> --}}
@@ -58,10 +43,10 @@
             <span class="help-block">{{ $errors->first('telefon') }}</span>
           @endif
         </div>
-      </div>
+      {{-- </div> --}}
 
       {{-- Email --}}
-      <div class="col-md-6" data-select2-id="46">
+      {{-- <div class="col-md-6" data-select2-id="46"> --}}
         @if ($errors->any())
           <div class="form-group {{ $errors->has('email') ? 'has-error' : 'has-success' }}">
         @else
@@ -73,10 +58,10 @@
             <span class="help-block">{{ $errors->first('email') }}</span>
           @endif
         </div>
-      {{-- </div> --}}
+      </div>
 
       {{-- Password --}}
-      {{-- <div class="col-md-6" data-select2-id="46"> --}}
+      <div class="col-md-6" data-select2-id="46">
         @if ($errors->any())
           <div class="form-group {{ $errors->has('password') ? 'has-error' : 'has-success' }}">
         @else

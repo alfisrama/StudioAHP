@@ -39,7 +39,7 @@
           <div class="form-group">
         @endif
           {!! Form::label('telefon', 'Telefon:', ['class' => 'control-label']) !!}
-          {!! Form::text('telefon', null, ['class'=>'form-control', 'data-inputmask'=>'"mask": ["9999-9999-999", "9999-9999-9999", "+99-9999-9999-9999"]','data-mask'=>'null', 'required']) !!}
+          {!! Form::text('telefon', null, ['class'=>'form-control', 'data-inputmask'=>'"mask": ["9999-9999-999", "9999-9999-9999", "+99-9999-9999-9999"]','data-mask'=>'null', 'required', 'min'=>'13']) !!}
           @if ($errors->has('telefon'))
             <span class="help-block">{{ $errors->first('telefon') }}</span>
           @endif
@@ -54,7 +54,7 @@
           <div class="form-group">
         @endif
           {!! Form::label('jumlah_ruangan', 'Jumlah Ruangan:', ['class' => 'control-label']) !!}
-          {!! Form::number('jumlah_ruangan', null, ['class' => 'form-control', 'required']) !!}
+          {!! Form::number('jumlah_ruangan', null, ['class' => 'form-control', 'required', 'min'=>'1']) !!}
           @if ($errors->has('jumlah_ruangan'))
             <span class="help-block">{{ $errors->first('jumlah_ruangan') }}</span>
           @endif
@@ -482,7 +482,6 @@
       theme: 'bootstrap4'
     })
 
-    //Money Euro
     $('[data-mask]').inputmask()
   })
 
