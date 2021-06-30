@@ -385,6 +385,19 @@
 
 @section('script')
 <script>
+  // function submitConfirm() {
+  //   swal({
+  //     title : "Yakin?",
+  //     text  : "Menyimpan data",
+  //     icon  : "warning",
+  //     buttons: true,
+  //     dangerMode: true,
+  //   }).then((willDelete) => {
+  //     if (willDelete){
+  //       document.getElementById("myForm").submit();
+  //     }
+  //   });
+  // }
 
   // harga otomatis
   function inHarga(){

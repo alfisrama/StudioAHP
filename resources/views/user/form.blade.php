@@ -93,6 +93,7 @@
   </div>
 </div>
 
+@if (Auth::user()->level == ('admin'))
 <!-- SELECT2 EXAMPLE -->
 <div class="card card-default">
   <div class="card-header">
@@ -130,6 +131,7 @@
   </div>
   <!-- /.card-body -->
 </div>
+@endif
 
 <div class="form-group">
   {!! Form::submit($submitButtonText, ['class' => 'btn btn-primary form-control']) !!}

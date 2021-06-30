@@ -37,7 +37,6 @@
                                     <th>Telefon</th>
                                     <th>E-mail</th>
                                     <th>Level</th>
-                                    <th>Izin</th>
                                     <th width="10%">Aksi</th>
                                 </tr>
                             </thead>
@@ -48,14 +47,6 @@
                                     <td>{{$user->telefon}}</td>
                                     <td>{{$user->email}}</td>
                                     <td>{{$user->level}}</td>
-                                    @php
-                                        if ($user->izin == 1) {
-                                            $akses = "Diblokir";
-                                        }else{
-                                            $akses = "Diizinkan";
-                                        }
-                                    @endphp
-                                    <td>{{$akses}}</td>
                                     <td class="text-center">
                                         <a class="btn btn-sm btn-warning text-center" href="{{url('user/'.$user->id.'/edit')}}"><i class="fas fa-edit"></i></a>
                                         <a class="btn btn-danger btn-sm delete text-center" href="#" user-id="{{$user->id}}" user-name="{{$user->name}}"><i class="fas fa-trash-alt"></i></a>
@@ -70,7 +61,6 @@
                                     <th>Telefon</th>
                                     <th>E-mail</th>
                                     <th>Level</th>
-                                    <th>Izin</th>
                                     <th>Aksi</th>
                                 </tr>
                             </tfoot>
@@ -98,7 +88,7 @@
         $('#table-user').DataTable({
             "columnDefs": [{
                 "orderable": false,
-                "targets": [5],
+                "targets": [4],
             }],
         });
     });

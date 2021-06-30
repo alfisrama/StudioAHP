@@ -26,7 +26,7 @@
             @foreach($bobot as $bobot)
             <div class="col-md-3 col-sm-6 col-12">
                 <div class="info-box">
-                    <span class="info-box-icon bg-info"><i class="far fa-envelope"></i></span>
+                    <span class="info-box-icon bg-info"><i class="fas fa-tools"></i></span>
                     
                     <div class="info-box-content">
                         <span class="info-box-text">Kelengkapan Alat</span>
@@ -41,7 +41,7 @@
             <!-- /.col -->
             <div class="col-md-3 col-sm-6 col-12">
                 <div class="info-box">
-                    <span class="info-box-icon bg-success"><i class="far fa-flag"></i></span>
+                    <span class="info-box-icon bg-success"><i class="fas fa-guitar"></i></span>
                     
                     <div class="info-box-content">
                         <span class="info-box-text">Kualitas Alat</span>
@@ -56,7 +56,7 @@
             <!-- /.col -->
             <div class="col-md-3 col-sm-6 col-12">
                 <div class="info-box">
-                    <span class="info-box-icon bg-warning"><i class="far fa-copy"></i></span>
+                    <span class="info-box-icon bg-warning"><i class="fas fa-home"></i></span>
                     
                     <div class="info-box-content">
                         <span class="info-box-text">Kualitas Ruangan</span>
@@ -71,7 +71,7 @@
             <!-- /.col -->
             <div class="col-md-3 col-sm-6 col-12">
                 <div class="info-box">
-                    <span class="info-box-icon bg-danger"><i class="far fa-star"></i></span>
+                    <span class="info-box-icon bg-danger"><i class="fas fa-dollar-sign"></i></span>
                     
                     <div class="info-box-content">
                         <span class="info-box-text">Harga</span>
@@ -86,7 +86,7 @@
             <!-- /.col -->
             <div class="col-md-3 col-sm-6 col-12">
                 <div class="info-box">
-                    <span class="info-box-icon bg-info"><i class="far fa-envelope"></i></span>
+                    <span class="info-box-icon bg-info"><i class="fas fa-concierge-bell"></i></span>
                     
                     <div class="info-box-content">
                         <span class="info-box-text">Pelayanan</span>
@@ -116,7 +116,7 @@
             <!-- /.col -->
             <div class="col-md-3 col-sm-6 col-12">
                 <div class="info-box">
-                    <span class="info-box-icon bg-warning"><i class="far fa-copy"></i></span>
+                    <span class="info-box-icon bg-warning"><i class="far fa-clock"></i></span>
                     
                     <div class="info-box-content">
                         <span class="info-box-text">Waktu Operasional</span>
