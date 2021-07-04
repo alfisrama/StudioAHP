@@ -53,7 +53,7 @@
                                     <td>{{$booking->start->format('H:i')}}</td>
                                     <td>{{$booking->durasi}} Jam</td>
                                     <td>{{$booking->end->format('H:i')}}</td>
-                                    <td>{{$booking->harga}}</td>
+                                    <td>Rp {{$booking->harga}}.00</td>
                                     <td class="text-center">
                                         <a class="btn btn-danger btn-sm delete text-center" href="#" booking-id="{{$booking->id}}" booking-nama="{{$booking->user->name}}">Batalkan</a>                                
                                     </td>

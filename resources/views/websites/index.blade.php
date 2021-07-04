@@ -130,6 +130,21 @@
                       </h5>
                     </div>
                   </div>
+                  @php
+                    $fas = $konversi->studio->fasilitas;
+                    if($fas == 1){
+                      $fasilitas = 'latihan';
+                    }else if($fas == 2){
+                      $fasilitas = 'latihan, rekaman live';
+                    }else if($fas == 3){
+                      $fasilitas = 'latihan, rekaman live, tracking';
+                    }else if($fas == 4){
+                      $fasilitas = 'latihan, rekaman live, tracking, mixing';
+                    }else if($fas == 5){
+                      $fasilitas = 'latihan, rekaman live, tracking, mixing, mastering';
+                    }
+                  @endphp
+                  <p class="card-text">Fasilitas {{$fasilitas}}</p>
                   <p class="card-text">{{$konversi->studio->telefon}}</p>
                   <p class="card-text">{{$konversi->studio->alamat}}</p>
                 </div>

@@ -146,7 +146,7 @@
         <div class="input-group-prepend">
           <span class="input-group-text">Rp</span>
         </div>
-        {!! Form::text('harga', null, ['class' => 'form-control harga', 'id'=>'harga']) !!}
+        {!! Form::text('harga', null, ['class' => 'form-control harga', 'id'=>'harga', 'readonly']) !!}
         <div class="input-group-append">
           <span class="input-group-text">.00</span>
         </div>
@@ -256,7 +256,10 @@
         var harga = parseFloat(data.harga[''].replace(/,/gi,''));
         if (durasi != 0) {
           var tHarga = harga * durasi;
-          document.getElementById('harga').value = tHarga;
+          var reverse = tHarga.toString().split('').reverse().join(''),
+              hHarga  = reverse.match(/\d{1,3}/g);
+              hHarga  = hHarga.join(',').split('').reverse().join('');
+          document.getElementById('harga').value = hHarga;
         } else {
           document.getElementById('harga').value = '0';
         }
