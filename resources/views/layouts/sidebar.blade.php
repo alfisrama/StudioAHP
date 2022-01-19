@@ -33,7 +33,7 @@
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class with font-awesome or any other icon font library -->
-          @if (Auth::check() && Auth::user()->level == ('admin') )
+          @if (Auth::check() && Auth::user()->level == ('admin'))
           <li class="nav-item">
             @if (!empty($halaman) && $halaman=='Dashboard')
             <a href="{{url('dashboard')}}" class="nav-link active">
@@ -49,6 +49,7 @@
           </li>
           @endif
 
+          @if (Auth::check() && Auth::user()->level != ('admin'))
           {{-- booking --}}
           @if (!empty($halaman) && $halaman=='Data Booking' || $halaman=='Tambah Data Booking' || $halaman=='Ubah Data Booking')
           <li class="nav-item menu-open">
@@ -86,6 +87,7 @@
               </li>
             </ul>
           </li>
+          @endif
 
           {{-- kalender --}}
           {{-- <li class="nav-item">
@@ -102,7 +104,7 @@
             </a>
           </li> --}}
           @if (Auth::check() && Auth::user()->level == ('admin'))
-          <li class="nav-header">Admin Section</li>
+          {{-- <li class="nav-header">Admin Section</li> --}}
           {{-- studio --}}
           @if (!empty($halaman) && $halaman=='Data Studio' || $halaman=='Tambah Data Studio' || $halaman=='Ubah Data Studio')
           <li class="nav-item menu-open">
@@ -141,16 +143,16 @@
             </ul>
           </li>
 
-          {{-- bobot --}}
+          {{-- bobot  --}}
           <li class="nav-item">
-            @if (!empty($halaman) && $halaman=='Bobot Kriteria')
+            @if (!empty($halaman) && $halaman=='Kriteria')
             <a href="{{url('bobot')}}" class="nav-link active">
             @else
             <a href="{{url('bobot')}}" class="nav-link">
             @endif
               <i class="nav-icon fas fa-table"></i>
               <p>
-                Bobot Kriteria
+                Kriteria
               </p>
             </a>
           </li>

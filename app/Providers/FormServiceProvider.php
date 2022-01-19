@@ -35,6 +35,10 @@ class FormServiceProvider extends ServiceProvider
             $view->with('studio', Studio::pluck('nama_studio', 'id'));
         });
 
+        view()->composer('websites.index', function($view) {
+            $view->with('list_studio', Studio::pluck('nama_studio', 'id'));
+        });
+
         //user
         view()->composer('booking.form', function($view) {
             $view->with('users', User::pluck('name', 'id'));

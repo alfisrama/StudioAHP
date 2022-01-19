@@ -31,6 +31,25 @@
         </div>
       </div>
 
+      {{-- Operator --}}
+      <div class="col-md-6" data-select2-id="46">
+        @if ($errors->any())
+          <div class="form-group {{ $errors->has('id_users') ? 'has-error' : 'has-success' }}">
+        @else
+          <div class="form-group">
+        @endif
+          {!! Form::label('id_users', 'Operator:', ['class' => 'control-label']) !!}
+          @if(!empty($operator))
+            {!! Form::select('id_users', $operator, null, ['class' => 'form-control select2bs4 select2-hidden-accessible', 'id' => 'id_users', 'placeholder' => 'Pilih Operator', 'data-select2-id'=>'17', 'style'=>'width: 100%;', 'tabindex'=>'-1', 'aria-hidden'=>'true', 'required']) !!}  
+          @else
+            <p>Tidak ada pilihan Operator!</p>
+          @endif
+          @if ($errors->has('id_users'))
+            <span class="help-block">{{ $errors->first('id_users') }}</span>
+          @endif
+        </div>
+      </div>
+
       {{-- Telefon --}}
       <div class="col-md-6" data-select2-id="46">
         @if ($errors->any())
@@ -61,24 +80,46 @@
         </div>
       </div>
 
-      {{-- Fasilitas --}}
+      {{-- Fasilitas Alat --}}
       <div class="col-md-6" data-select2-id="46">
         @if ($errors->any())
-          <div class="form-group {{ $errors->has('fasilitas') ? 'has-error' : 'has-success' }}">
+          <div class="form-group {{ $errors->has('fasilitas_alat') ? 'has-error' : 'has-success' }}">
         @else
           <div class="form-group">
         @endif
-          {!! Form::label('fasilitas', 'Fasilitas:', ['class' => 'control-label']) !!}
-          {!!Form::select('fasilitas',[
-            '1'=>'Latihan',
-            '2'=>'Latihan + Rekaman Live',
-            '3'=>'Latihan + Rekaman Live + Rekaman Tracking',
-            '4'=>'Latihan + Rekaman Live + Rekaman Tracking + Mixing',
-            '5'=>'Latihan + Rekaman Live + Rekaman Tracking + Mixing + Mastering'],
-            null, ['class' => 'form-control', 'required',  'onchange'=>'getFasilitas()', 'id'=>'fasilitas', 'placeholder' => 'Pilih Fasilitas...']);
+          {!! Form::label('fasilitas_alat', 'Fasilitas Alat:', ['class' => 'control-label']) !!}
+          {!!Form::select('fasilitas_alat',[
+            '1'=>'Drum, Gitar Electric, Bass, Mic',
+            '2'=>'Drum, Gitar Electric, Gitar Acoustic, Bass, Mic',
+            '3'=>'Drum, Gitar Electric, Bass, Mic, Keyboard',
+            '4'=>'Drum, Gitar Electric, Bass, Mic, Keyboard, Perkusi',
+            '5'=>'Drum, Gitar Electric, Gitar Acoustic, Bass, Mic, Keyboard',
+            '6'=>'Drum, Gitar Electric, Gitar Acoustic, Bass, Mic, Keyboard, Perkusi'],
+            null, ['class' => 'form-control', 'required',  'onchange'=>'getFasilitasAlat()', 'id'=>'fasilitas_alat', 'placeholder' => 'Pilih Fasilitas Alat...']);
             !!}
-          @if ($errors->has('fasilitas'))
-              <span class="help-block">{{ $errors->first('fasilitas') }}</span>
+          @if ($errors->has('fasilitas_alat'))
+              <span class="help-block">{{ $errors->first('fasilitas_alat') }}</span>
+          @endif
+        </div>
+      </div>
+
+      {{-- Fasilitas Rekaman --}}
+      <div class="col-md-6" data-select2-id="46">
+        @if ($errors->any())
+          <div class="form-group {{ $errors->has('fasilitas_rekaman') ? 'has-error' : 'has-success' }}">
+        @else
+          <div class="form-group">
+        @endif
+          {!! Form::label('fasilitas_rekaman', 'Fasilitas Rekaman:', ['class' => 'control-label']) !!}
+          {!!Form::select('fasilitas_rekaman',[
+            '1'=>'Tidak bisa rekaman',
+            '2'=>'Live Recording',
+            '3'=>'Semi Track Recording',
+            '4'=>'Full Recordng'],
+            null, ['class' => 'form-control', 'required',  'onchange'=>'getFasilitasRekaman()', 'id'=>'fasilitas_rekaman', 'placeholder' => 'Pilih Fasilitas Rekaman...']);
+            !!}
+          @if ($errors->has('fasilitas_rekaman'))
+              <span class="help-block">{{ $errors->first('fasilitas_rekaman') }}</span>
           @endif
         </div>
       </div>
@@ -103,25 +144,31 @@
           @endif
         </div>
       </div>
-      
-      {{-- Operator --}}
+
+      {{-- Pelayanan --}}
       <div class="col-md-6" data-select2-id="46">
         @if ($errors->any())
-          <div class="form-group {{ $errors->has('id_users') ? 'has-error' : 'has-success' }}">
+          <div class="form-group {{ $errors->has('pelayanan') ? 'has-error' : 'has-success' }}">
         @else
           <div class="form-group">
         @endif
-          {!! Form::label('id_users', 'Operator:', ['class' => 'control-label']) !!}
-          @if(!empty($operator))
-            {!! Form::select('id_users', $operator, null, ['class' => 'form-control select2bs4 select2-hidden-accessible', 'id' => 'id_users', 'placeholder' => 'Pilih Operator', 'data-select2-id'=>'17', 'style'=>'width: 100%;', 'tabindex'=>'-1', 'aria-hidden'=>'true', 'required']) !!}  
-          @else
-            <p>Tidak ada pilihan Operator!</p>
-          @endif
-          @if ($errors->has('id_users'))
-            <span class="help-block">{{ $errors->first('id_users') }}</span>
+          {!! Form::label('pelayanan', 'Pelayanan:', ['class' => 'control-label']) !!}
+          {!!Form::select('pelayanan',[
+            '5'=>'Ramah, Welcome Drink, Bonus Waktu',
+            '4'=>'Ramah, Bonus Waktu',
+            '3'=>'Ramah, Welcome Drink',
+            '2'=>'Ramah',
+            '1'=>'Kurang Ramah'],
+            null, ['class' => 'form-control', 'required',  'onchange'=>'getPelayanan()', 'id'=>'pelayanan', 'placeholder' => 'Pilih Pelayanan...']);
+            !!}
+          @if ($errors->has('pelayanan'))
+            <span class="help-block">{{ $errors->first('pelayanan') }}</span>
           @endif
         </div>
+        <!-- /.form-group -->
       </div>
+      <!-- /.col -->
+
     </div>
     <!-- /.row -->
     
@@ -200,7 +247,7 @@
 <!-- SELECT2 EXAMPLE -->
 <div class="card card-default">
   <div class="card-header">
-    <h3 class="card-title">Nilai Studio & Konversi</h3>
+    <h3 class="card-title">Nilai Konversi Studio</h3>
     <div class="card-tools">
       <button type="button" class="btn btn-tool" data-card-widget="collapse">
         <i class="fas fa-minus"></i>
@@ -210,77 +257,25 @@
   <!-- /.card-header -->
   <div class="card-body">
     <div class="row">
-      {{-- Kelengkapan Alat --}}
-      <div class="col-md-3" data-select2-id="46">
+      {{-- Konversi pelayanan --}}
+      <div class="col-md-2" data-select2-id="46">
         @if ($errors->any())
-          <div class="form-group {{ $errors->has('kelengkapan_alat') ? 'has-error' : 'has-success' }}">
+          <div class="form-group {{ $errors->has('konversi_pelayanan') ? 'has-error' : 'has-success' }}">
         @else
           <div class="form-group">
         @endif
-          {!! Form::label('kelengkapan_alat', 'Kelengkapan Alat:', ['class' => 'control-label']) !!}
-          {!!Form::select('kelengkapan_alat',[
-            '5'=>'Sangat Lengkap',
-            '4'=>'Lengkap',
-            '3'=>'Cukup Lengkap',
-            '2'=>'Kurang Lengkap',
-            '1'=>'Sangat Kurang Lengkap'],
-            null, ['class' => 'form-control', 'required', 'placeholder' => '...']);
-            !!}
-          @if ($errors->has('kelengkapan_alat'))
-            <span class="help-block">{{ $errors->first('kelengkapan_alat') }}</span>
+          {!! Form::label('konversi_pelayanan', 'Pelayanan:', ['class' => 'control-label']) !!}
+          {!! Form::text('konversi_pelayanan', null, ['class' => 'form-control', 'id'=>'konversi_pelayanan', 'readonly', 'required']) !!}
+          @if ($errors->has('konversi_pelayanan'))
+            <span class="help-block">{{ $errors->first('konversi_pelayanan') }}</span>
           @endif
         </div>
         <!-- /.form-group -->
       </div>
       <!-- /.col -->
-      {{-- Kualitas Alat --}}
-      <div class="col-md-3" data-select2-id="46">
-        @if ($errors->any())
-          <div class="form-group {{ $errors->has('kualitas_alat') ? 'has-error' : 'has-success' }}">
-        @else
-          <div class="form-group">
-        @endif
-          {!! Form::label('kualitas_alat', 'Kualitas Alat:', ['class' => 'control-label']) !!}
-          {!!Form::select('kualitas_alat',[
-            '5'=>'Sangat Baik',
-            '4'=>'Baik',
-            '3'=>'Cukup Baik',
-            '2'=>'Kurang Baik',
-            '1'=>'Sangat Kurang Baik'],
-            null, ['class' => 'form-control', 'required',  'placeholder' => '...']);
-            !!}
-          @if ($errors->has('kualitas_alat'))
-            <span class="help-block">{{ $errors->first('kualitas_alat') }}</span>
-          @endif
-        </div>
-        <!-- /.form-group -->
-      </div>
-      <!-- /.col -->
-      {{-- Kualitas Ruangan --}}
-      <div class="col-md-3" data-select2-id="46">
-        @if ($errors->any())
-          <div class="form-group {{ $errors->has('kualitas_ruangan') ? 'has-error' : 'has-success' }}">
-        @else
-          <div class="form-group">
-        @endif
-          {!! Form::label('kualitas_ruangan', 'Kualitas Ruangan:', ['class' => 'control-label']) !!}
-          {!!Form::select('kualitas_ruangan',[
-            '5'=>'Sangat Baik',
-            '4'=>'Baik',
-            '3'=>'Cukup Baik',
-            '2'=>'Kurang Baik',
-            '1'=>'Sangat Kurang Baik'],
-            null, ['class' => 'form-control', 'required',  'placeholder' => '...']);
-            !!}
-          @if ($errors->has('kualitas_ruangan'))
-            <span class="help-block">{{ $errors->first('kualitas_ruangan') }}</span>
-          @endif
-        </div>
-        <!-- /.form-group -->
-      </div>
-      <!-- /.col -->
+
       {{-- Konversi Harga --}}
-      <div class="col-md-3" data-select2-id="46">
+      <div class="col-md-2" data-select2-id="46">
         @if ($errors->any())
           <div class="form-group {{ $errors->has('konversi_harga') ? 'has-error' : 'has-success' }}">
         @else
@@ -295,47 +290,43 @@
         <!-- /.form-group -->
       </div>
       <!-- /.col -->
-      {{-- Pelayanan --}}
-      <div class="col-md-3" data-select2-id="46">
+      
+      {{-- Fasilitas Alat --}}
+      <div class="col-md-2" data-select2-id="46">
         @if ($errors->any())
-          <div class="form-group {{ $errors->has('pelayanan') ? 'has-error' : 'has-success' }}">
+          <div class="form-group {{ $errors->has('konversi_fasilitas_alat') ? 'has-error' : 'has-success' }}">
         @else
           <div class="form-group">
         @endif
-          {!! Form::label('pelayanan', 'Pelayanan:', ['class' => 'control-label']) !!}
-          {!!Form::select('pelayanan',[
-            '5'=>'Sangat Baik',
-            '4'=>'Baik',
-            '3'=>'Cukup Baik',
-            '2'=>'Kurang Baik',
-            '1'=>'Sangat Kurang Baik'],
-            null, ['class' => 'form-control', 'required',  'placeholder' => '...']);
-            !!}
-          @if ($errors->has('pelayanan'))
-            <span class="help-block">{{ $errors->first('pelayanan') }}</span>
+          {!! Form::label('konversi_fasilitas_alat', 'Fasilitas Alat:', ['class' => 'control-label']) !!}
+          {!! Form::text('konversi_fasilitas_alat', null, ['class' => 'form-control', 'required',  'id'=>'konversi_fasilitas_alat', 'readonly']) !!}
+          @if ($errors->has('konversi_fasilitas_alat'))
+            <span class="help-block">{{ $errors->first('konversi_fasilitas_alat') }}</span>
           @endif
         </div>
         <!-- /.form-group -->
       </div>
       <!-- /.col -->
-      {{-- Fasilitas --}}
-      <div class="col-md-3" data-select2-id="46">
+
+      {{-- Fasilitas Rekaman --}}
+      <div class="col-md-2" data-select2-id="46">
         @if ($errors->any())
-          <div class="form-group {{ $errors->has('konversi_fasilitas') ? 'has-error' : 'has-success' }}">
+          <div class="form-group {{ $errors->has('konversi_fasilitas_rekaman') ? 'has-error' : 'has-success' }}">
         @else
           <div class="form-group">
         @endif
-          {!! Form::label('konversi_fasilitas', 'Fasilitas:', ['class' => 'control-label']) !!}
-          {!! Form::text('konversi_fasilitas', null, ['class' => 'form-control', 'required',  'id'=>'konversi_fasilitas', 'readonly']) !!}
-          @if ($errors->has('konversi_fasilitas'))
-            <span class="help-block">{{ $errors->first('konversi_fasilitas') }}</span>
+          {!! Form::label('konversi_fasilitas_rekaman', 'Fasilitas Rekaman:', ['class' => 'control-label']) !!}
+          {!! Form::text('konversi_fasilitas_rekaman', null, ['class' => 'form-control', 'required',  'id'=>'konversi_fasilitas_rekaman', 'readonly']) !!}
+          @if ($errors->has('konversi_fasilitas_rekaman'))
+            <span class="help-block">{{ $errors->first('konversi_fasilitas_rekaman') }}</span>
           @endif
         </div>
         <!-- /.form-group -->
       </div>
       <!-- /.col -->
+
       {{-- Waktu Operasional --}}
-      <div class="col-md-3" data-select2-id="46">
+      <div class="col-md-2" data-select2-id="46">
         @if ($errors->any())
           <div class="form-group {{ $errors->has('waktu_operasional') ? 'has-error' : 'has-success' }}">
         @else
@@ -345,29 +336,6 @@
           {!! Form::text('waktu_operasional', null, ['class' => 'form-control', 'required', 'id'=>'konversi_waktu', 'readonly']) !!}
           @if ($errors->has('waktu_operasional'))
             <span class="help-block">{{ $errors->first('waktu_operasional') }}</span>
-          @endif
-        </div>
-        <!-- /.form-group -->
-      </div>
-      <!-- /.col -->
-      {{-- Suasana Studio --}}
-      <div class="col-md-3" data-select2-id="46">
-        @if ($errors->any())
-          <div class="form-group {{ $errors->has('suasana_studio') ? 'has-error' : 'has-success' }}">
-        @else
-          <div class="form-group">
-        @endif
-          {!! Form::label('suasana_studio', 'Suasana Studio:', ['class' => 'control-label']) !!}
-          {!!Form::select('suasana_studio',[
-            '5'=>'Sangat Nyaman',
-            '4'=>'Nyaman',
-            '3'=>'Cukup Nyaman',
-            '2'=>'Kurang Nyaman',
-            '1'=>'Sangat Kurang Nyaman'],
-            null, ['class' => 'form-control', 'required',  'placeholder' => '...']);
-            !!}
-          @if ($errors->has('suasana_studio'))
-            <span class="help-block">{{ $errors->first('suasana_studio') }}</span>
           @endif
         </div>
         <!-- /.form-group -->
@@ -425,11 +393,21 @@
   }
 
   // Fasilitas otomatis
-  function getFasilitas(){
-    var selectedValue = document.getElementById('fasilitas').value;
-    document.getElementById('konversi_fasilitas').value = selectedValue;
+  function getFasilitasAlat(){
+    var selectedValue = document.getElementById('fasilitas_alat').value;
+    document.getElementById('konversi_fasilitas_alat').value = selectedValue;
+  }
+
+  function getFasilitasRekaman(){
+    var selectedValue = document.getElementById('fasilitas_rekaman').value;
+    document.getElementById('konversi_fasilitas_rekaman').value = selectedValue;
   }
   
+  function getPelayanan(){
+    var selectedValue = document.getElementById('pelayanan').value;
+    document.getElementById('konversi_pelayanan').value = selectedValue;
+  }
+
   function getWaktu(){
     var waTutup = parseFloat(document.getElementById('tutup').value.replace(/:/gi,'.'));
     var waBuka = parseFloat(document.getElementById('buka').value.replace(/:/gi,'.'));

@@ -24,6 +24,7 @@ class Booking extends Model
         'tanggal',
         'start',
         'end',
+        'created_at',
     ];
     
     public function studio(){

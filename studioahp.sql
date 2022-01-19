@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 29, 2021 at 01:34 PM
+-- Generation Time: Jul 30, 2021 at 03:44 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.2
 
@@ -30,14 +30,11 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `bobot` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `kelengkapan_alat` double NOT NULL,
-  `kualitas_alat` double NOT NULL,
-  `kualitas_ruangan` double NOT NULL,
-  `harga` double NOT NULL,
   `pelayanan` double NOT NULL,
-  `fasilitas` double NOT NULL,
+  `harga` double NOT NULL,
+  `fasilitas_alat` double NOT NULL,
   `waktu_operasional` double NOT NULL,
-  `suasana_studio` double NOT NULL,
+  `fasilitas_rekaman` double NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -46,8 +43,8 @@ CREATE TABLE `bobot` (
 -- Dumping data for table `bobot`
 --
 
-INSERT INTO `bobot` (`id`, `kelengkapan_alat`, `kualitas_alat`, `kualitas_ruangan`, `harga`, `pelayanan`, `fasilitas`, `waktu_operasional`, `suasana_studio`, `created_at`, `updated_at`) VALUES
-(1, 0.242, 0.242, 0.242, 0.123, 0.07, 0.039, 0.021, 0.021, '2021-01-06 03:10:15', '2021-06-29 04:25:50');
+INSERT INTO `bobot` (`id`, `pelayanan`, `harga`, `fasilitas_alat`, `waktu_operasional`, `fasilitas_rekaman`, `created_at`, `updated_at`) VALUES
+(1, 0.504, 0.26, 0.134, 0.067, 0.035, '2021-01-06 03:10:15', '2021-07-26 05:41:28');
 
 -- --------------------------------------------------------
 
@@ -70,14 +67,6 @@ CREATE TABLE `booking` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `booking`
---
-
-INSERT INTO `booking` (`id`, `id_studio`, `id_users`, `ruangan`, `tanggal`, `start`, `durasi`, `end`, `harga`, `pembayaran`, `foto`, `created_at`, `updated_at`) VALUES
-(6, 8, 10, 1, '2021-06-30', '16:00:00', 4, '20:00:00', '180000', NULL, NULL, '2021-06-28 01:57:33', '2021-06-28 01:57:33'),
-(7, 7, 8, 1, '2021-06-30', '15:00:00', 3, '18:00:00', '180000', NULL, NULL, '2021-06-29 02:38:22', '2021-06-29 02:38:22');
 
 -- --------------------------------------------------------
 
@@ -102,14 +91,11 @@ CREATE TABLE `failed_jobs` (
 
 CREATE TABLE `konversi` (
   `id_studio` bigint(20) UNSIGNED NOT NULL,
-  `kelengkapan_alat` int(11) NOT NULL,
-  `kualitas_alat` int(11) NOT NULL,
-  `kualitas_ruangan` int(11) NOT NULL,
-  `harga` int(11) NOT NULL,
   `pelayanan` int(11) NOT NULL,
-  `fasilitas` int(11) NOT NULL,
+  `harga` int(11) NOT NULL,
+  `fasilitas_alat` int(11) NOT NULL,
   `waktu_operasional` int(11) NOT NULL,
-  `suasana_studio` int(11) NOT NULL,
+  `fasilitas_rekaman` int(11) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -118,13 +104,17 @@ CREATE TABLE `konversi` (
 -- Dumping data for table `konversi`
 --
 
-INSERT INTO `konversi` (`id_studio`, `kelengkapan_alat`, `kualitas_alat`, `kualitas_ruangan`, `harga`, `pelayanan`, `fasilitas`, `waktu_operasional`, `suasana_studio`, `created_at`, `updated_at`) VALUES
-(7, 4, 5, 4, 5, 5, 2, 4, 4, '2021-06-16 08:12:51', '2021-06-16 09:40:24'),
-(8, 4, 3, 3, 6, 3, 2, 6, 3, '2021-06-16 08:17:24', '2021-06-16 08:17:24'),
-(9, 3, 3, 3, 6, 5, 2, 6, 3, '2021-06-16 08:20:02', '2021-06-16 08:20:02'),
-(10, 4, 4, 4, 5, 4, 1, 6, 4, '2021-06-16 08:22:03', '2021-06-16 09:24:12'),
-(11, 4, 4, 4, 5, 3, 1, 6, 4, '2021-06-16 08:24:23', '2021-06-16 08:24:23'),
-(15, 4, 4, 4, 7, 4, 4, 6, 4, '2021-06-29 04:24:24', '2021-06-29 04:25:10');
+INSERT INTO `konversi` (`id_studio`, `pelayanan`, `harga`, `fasilitas_alat`, `waktu_operasional`, `fasilitas_rekaman`, `created_at`, `updated_at`) VALUES
+(7, 3, 5, 3, 4, 2, '2021-06-16 08:12:51', '2021-07-28 10:27:14'),
+(8, 4, 6, 1, 6, 2, '2021-06-16 08:17:24', '2021-07-28 10:29:37'),
+(9, 4, 6, 5, 6, 2, '2021-06-16 08:20:02', '2021-07-28 10:30:17'),
+(10, 2, 5, 4, 6, 1, '2021-06-16 08:22:03', '2021-07-28 10:31:32'),
+(11, 5, 4, 4, 6, 4, '2021-06-16 08:24:23', '2021-07-28 10:34:59'),
+(19, 1, 5, 4, 4, 2, '2021-07-28 10:05:43', '2021-07-28 10:05:43'),
+(21, 4, 6, 1, 4, 4, '2021-07-28 10:12:17', '2021-07-28 10:12:17'),
+(22, 4, 6, 1, 4, 2, '2021-07-28 10:15:38', '2021-07-28 10:15:38'),
+(23, 1, 6, 1, 6, 1, '2021-07-28 10:18:48', '2021-07-28 10:18:48'),
+(24, 5, 6, 3, 4, 3, '2021-07-28 10:21:42', '2021-07-28 10:21:42');
 
 -- --------------------------------------------------------
 
@@ -182,19 +172,6 @@ CREATE TABLE `rooms` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data for table `rooms`
---
-
-INSERT INTO `rooms` (`id`, `id_booking`, `id_studio`, `ruangan`, `tanggal`, `start`, `end`, `created_at`, `updated_at`) VALUES
-(9, 6, 8, 1, '2021-06-30', '16:00:00', '17:00:00', '2021-06-28 01:57:33', '2021-06-28 01:57:33'),
-(10, 6, 8, 1, '2021-06-30', '17:00:00', '18:00:00', '2021-06-28 01:57:33', '2021-06-28 01:57:33'),
-(11, 6, 8, 1, '2021-06-30', '18:00:00', '19:00:00', '2021-06-28 01:57:33', '2021-06-28 01:57:33'),
-(12, 6, 8, 1, '2021-06-30', '19:00:00', '20:00:00', '2021-06-28 01:57:33', '2021-06-28 01:57:33'),
-(13, 7, 7, 1, '2021-06-30', '15:00:00', '16:00:00', '2021-06-29 02:38:23', '2021-06-29 02:38:23'),
-(14, 7, 7, 1, '2021-06-30', '16:00:00', '17:00:00', '2021-06-29 02:38:23', '2021-06-29 02:38:23'),
-(15, 7, 7, 1, '2021-06-30', '17:00:00', '18:00:00', '2021-06-29 02:38:23', '2021-06-29 02:38:23');
-
 -- --------------------------------------------------------
 
 --
@@ -207,7 +184,8 @@ CREATE TABLE `studio` (
   `alamat` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `telefon` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `jumlah_ruangan` int(11) NOT NULL,
-  `fasilitas` int(11) NOT NULL,
+  `fasilitas_alat` int(11) NOT NULL,
+  `fasilitas_rekaman` int(11) NOT NULL,
   `harga` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
   `buka` time NOT NULL,
   `tutup` time NOT NULL,
@@ -221,13 +199,17 @@ CREATE TABLE `studio` (
 -- Dumping data for table `studio`
 --
 
-INSERT INTO `studio` (`id`, `nama_studio`, `alamat`, `telefon`, `jumlah_ruangan`, `fasilitas`, `harga`, `buka`, `tutup`, `foto`, `id_users`, `created_at`, `updated_at`) VALUES
-(7, 'alzena studio', 'Gg. Asem Pamulang', '0822-6117-2107', 2, 2, '60,000', '12:00:00', '23:59:00', NULL, 9, '2021-06-16 08:12:51', '2021-06-16 09:40:24'),
-(8, 'studio legend', 'Pd. Ranji Ciputat', '0819-0630-2657', 2, 2, '45,000', '10:00:00', '23:59:00', NULL, 10, '2021-06-16 08:17:24', '2021-06-16 08:17:24'),
-(9, 'fariz studio music', 'Pisangan, Ciputat', '0897-9647-495_', 2, 2, '35,000', '08:00:00', '23:00:00', NULL, 11, '2021-06-16 08:20:02', '2021-06-16 08:20:02'),
-(10, 'studio music 86', 'Cirendeu, Ciputat', '0217-5057-97__', 2, 1, '55,000', '10:00:00', '23:00:00', NULL, 12, '2021-06-16 08:22:03', '2021-06-16 09:24:12'),
-(11, 'woodstock studio', 'Benda baru, Pamulang', '0813-1765-9330', 2, 1, '65,000', '10:00:00', '23:59:00', NULL, 13, '2021-06-16 08:24:23', '2021-06-16 09:21:53'),
-(15, 'coba', 'jauh banget', '1232-3213-1213', 5, 4, '12,323', '10:32:00', '22:11:00', NULL, 9, '2021-06-29 04:24:23', '2021-06-29 04:25:10');
+INSERT INTO `studio` (`id`, `nama_studio`, `alamat`, `telefon`, `jumlah_ruangan`, `fasilitas_alat`, `fasilitas_rekaman`, `harga`, `buka`, `tutup`, `foto`, `id_users`, `created_at`, `updated_at`) VALUES
+(7, 'alzena studio', 'Gg. Asem Pamulang', '0822-6117-2107', 2, 3, 2, '60,000', '12:00:00', '23:59:00', NULL, 9, '2021-06-27 11:12:51', '2021-06-27 11:12:51'),
+(8, 'studio legend', 'Pd. Ranji Ciputat', '0819-0630-2657', 2, 1, 2, '45,000', '10:00:00', '23:59:00', NULL, 10, '2021-06-27 11:16:51', '2021-06-27 11:16:51'),
+(9, 'fariz studio music', 'Pisangan, Ciputat', '0897-9647-495', 2, 5, 2, '35,000', '08:00:00', '23:00:00', NULL, 11, '2021-06-27 11:18:51', '2021-06-27 11:18:51'),
+(10, 'studio music 86', 'Cirendeu, Ciputat', '0217-5057-97_', 2, 4, 1, '55,000', '10:00:00', '23:00:00', NULL, 12, '2021-06-27 11:20:51', '2021-06-27 11:20:51'),
+(11, 'woodstock studio', 'Benda baru, Pamulang', '0813-1765-9330', 2, 4, 4, '75,000', '10:00:00', '23:59:00', NULL, 13, '2021-06-27 11:22:51', '2021-06-27 11:22:51'),
+(19, 'ariko studio', 'Sawah Lama, Ciputat Baru', '0813-2280-9798', 1, 4, 2, '70,000', '12:00:00', '23:59:00', NULL, 19, '2021-06-27 11:26:51', '2021-06-27 11:26:51'),
+(21, 'studio bawah tanah', 'Bambu Apus, Pamulang', '0813-3574-3467', 1, 1, 4, '50,000', '12:00:00', '23:59:00', NULL, 20, '2021-06-27 11:28:51', '2021-06-27 11:28:51'),
+(22, 'mm studio', 'Pisangan, Ciputat', '0812-3438-7582', 1, 1, 2, '50,000', '12:00:00', '23:59:00', NULL, 21, '2021-06-27 11:30:51', '2021-06-27 11:30:51'),
+(23, 'durest studio', 'Cemp.Putih, Ciputat Timur', '0219-2192-233', 1, 1, 1, '50,000', '10:00:00', '23:59:00', NULL, 22, '2021-06-27 11:32:51', '2021-06-27 11:32:51'),
+(24, 'inside studio', 'Cendrawasih, Sawah baru', '0877-7176-7168', 1, 3, 3, '50,000', '12:00:00', '23:59:00', NULL, 23, '2021-06-27 11:34:51', '2021-06-27 11:34:51');
 
 -- --------------------------------------------------------
 
@@ -259,7 +241,14 @@ INSERT INTO `users` (`id`, `name`, `telefon`, `email`, `email_verified_at`, `pas
 (10, 'operator studio legend', '0812-3329-2332', 'legend@studio.com', NULL, '$2y$10$Dg2BMyFjbcGj8o8fJQdzIejjoBSqKKIvNirfKcXiXXDuOu1U50hnC', 'operator', 0, NULL, '2021-06-16 06:54:36', '2021-06-29 01:22:27'),
 (11, 'operator fariz studio', '0822-3221-2321', 'fariz@studio.com', NULL, '$2y$10$N8KjXlSjFOBAIKEfyI/EruNILW1HN0fQQT8ba1lOkIIhCtttx0ADy', 'operator', 0, NULL, '2021-06-16 06:58:28', '2021-06-29 01:21:50'),
 (12, 'operator studio 86', '0812-3323-2123', '86@studio.com', NULL, '$2y$10$jtBLBnyh.Q98DY3lEkQaduYCXMJLJx0HogLQhRNiJaA/IC3hiODCG', 'operator', 0, NULL, '2021-06-16 07:00:13', '2021-06-29 01:23:07'),
-(13, 'operator woodstock studio', '0812-3232-1232', 'woodstock@studio.com', NULL, '$2y$10$ZMeK0I5AcAvMniuXlU9V.egb2YGoTHUVVsRMFn78nihxDmSDucY4i', 'operator', 0, NULL, '2021-06-16 07:01:24', '2021-06-29 01:22:10');
+(13, 'operator woodstock studio', '0812-3232-1232', 'woodstock@studio.com', NULL, '$2y$10$ZMeK0I5AcAvMniuXlU9V.egb2YGoTHUVVsRMFn78nihxDmSDucY4i', 'operator', 0, NULL, '2021-06-16 07:01:24', '2021-06-29 01:22:10'),
+(17, 'customer 2', '1233-2123-578', 'customer2@gmail.com', NULL, '$2y$10$BdFAvKu.GGlDJeZNkpoW7eSpj5IKa2HX5L0/qkRMEp.jWIBNxEjli', 'customer', 0, NULL, '2021-06-29 04:44:08', '2021-06-29 04:44:08'),
+(18, 'customer', '1233-2123-528', 'customer@gmail.com', NULL, '$2y$10$S.StvPlqPnD1RVM1E.EHoOiMuzIBTm49VRnGUxlDU7arL8MOeknGW', 'customer', 0, NULL, '2021-06-29 04:46:22', '2021-06-29 04:46:22'),
+(19, 'operator ariko studio', '0812-3328-4224', 'ariko@studio.com', NULL, '1234567890', 'operator', 0, NULL, '2021-06-16 06:50:55', '2021-06-16 06:50:55'),
+(20, 'operator studio bawah tanah', '0812-3328-4225', 'bawahtanah@studio.com', NULL, '1234567890', 'operator', 0, NULL, '2021-06-16 06:50:55', '2021-06-16 06:50:55'),
+(21, 'operator mm studio', '0812-3328-4226', 'mm@studio.com', NULL, '1234567890', 'operator', 0, NULL, '2021-06-16 06:50:55', '2021-06-16 06:50:55'),
+(22, 'operator durest studio', '0812-3328-4227', 'durest@studio.com', NULL, '1234567890', 'operator', 0, NULL, '2021-06-16 06:50:55', '2021-06-16 06:50:55'),
+(23, 'operator inside studio', '0812-3328-4228', 'inside@studio.com', NULL, '1234567890', 'operator', 0, NULL, '2021-06-16 06:50:55', '2021-06-16 06:50:55');
 
 --
 -- Indexes for dumped tables
@@ -341,7 +330,7 @@ ALTER TABLE `bobot`
 -- AUTO_INCREMENT for table `booking`
 --
 ALTER TABLE `booking`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -359,19 +348,19 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `rooms`
 --
 ALTER TABLE `rooms`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `studio`
 --
 ALTER TABLE `studio`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- Constraints for dumped tables

@@ -95,61 +95,34 @@
             @foreach($konversiHasil as $konversi)
             @php
               $z = $konversi->studio->nama_studio;
-              $a = round($bkelengkapan_alat*(($konversi->kelengkapan_alat)/$sumKelengkapan_alat),4);
-              $b = round($bkualitas_alat*(($konversi->kualitas_alat)/$sumKualitas_alat),4);
-              $c = round($bkualitas_ruangan*(($konversi->kualitas_ruangan)/$sumKualitas_ruangan),4);
-              $d = round($bharga*(($konversi->harga)/$sumHarga),4);
-              $e = round($bpelayanan*(($konversi->pelayanan)/$sumPelayanan),4);
-              $f = round($bfasilitas*(($konversi->fasilitas)/$sumFasilitas),4);
-              $g = round($bwaktu_operasional*(($konversi->waktu_operasional)/$sumWaktu_operasional),4);
-              $h = round($bsuasana_studio*(($konversi->suasana_studio)/$sumSuasana_studio),4);
-              $total = $a+$b+$c+$d+$e+$f+$g+$h;
+              $a = round($bpelayanan*(($konversi->pelayanan)/$sumPelayanan),4);
+              $b = round($bharga*(($konversi->harga)/$sumHarga),4);
+              $c = round($bfasilitas_alat*(($konversi->fasilitas_alat)/$sumFasilitas_alat),4);
+              $d = round($bwaktu_operasional*(($konversi->waktu_operasional)/$sumWaktu_operasional),4);
+              $e = round($bfasilitas_rekaman*(($konversi->fasilitas_rekaman)/$sumFasilitas_rekaman),4);
+              $total = $a+$b+$c+$d+$e;
               @endphp
             <div class="col-md-4 col-sm-12 mb-3 align-items-stretch">
               <div class="card" data-aos="fade-up">
                 <img src="{{ asset('assets/img/features-1.jpg')}}" class="card-img-top" alt="...">
                 <div class="card-body">
                   <i class="bx bx-music"></i>
-                  <div class="row">
-                    <div class="col-md-8">
-                      <h5 class="card-title">
-                        <a>{{$z}}</a>
-                      </h5>
-                    </div>
-                    <div class="col-md-4">
-                      <h5 class="card-title">
-                        <table id="table-ranking">
-                        <tr class="text-center">
-                          <td>Ranking</td>
-                          <td> </td>
-                          <td> </td>
-                          <td class="total bg-warning" hidden>{{$total}}</td>
-                          <td class="rank text-center"></td>
-                        </tr>
-                      </table>
-                      </h5>
-                    </div>
-                  </div>
-                  @php
-                    $fas = $konversi->studio->fasilitas;
-                    if($fas == 1){
-                      $fasilitas = 'latihan';
-                    }else if($fas == 2){
-                      $fasilitas = 'latihan, rekaman live';
-                    }else if($fas == 3){
-                      $fasilitas = 'latihan, rekaman live, tracking';
-                    }else if($fas == 4){
-                      $fasilitas = 'latihan, rekaman live, tracking, mixing';
-                    }else if($fas == 5){
-                      $fasilitas = 'latihan, rekaman live, tracking, mixing, mastering';
-                    }
-                  @endphp
-                  <p class="card-text">Fasilitas {{$fasilitas}}</p>
-                  <p class="card-text">{{$konversi->studio->telefon}}</p>
-                  <p class="card-text">{{$konversi->studio->alamat}}</p>
+                  <h5 class="card-title"><a>{{$z}}</a></h5>
+                  {{-- <p class="card-text">Fasilitas</p> --}}
+                  <table id="table-ranking">
+                    <tr class="text-center">
+                      <td>Ranking</td>
+                      <td> </td>
+                      <td> </td>
+                      <td class="total bg-warning" hidden>{{$total}}</td>
+                      <td class="rank text-center"></td>
+                    </tr>
+                  </table>
                 </div>
                 <div class="card-footer">
-                  <a href="{{url('booking/create')}}" class="btn btn-primary">Booking Studio</a>
+                  <a href="{{url('booking/create')}}" class="btn btn-sm btn-primary">Booking Studio</a>
+                  {{-- <a href="{{url('booking/create')}}" class="btn btn-sm btn-success">Chat via WhatsApp</a> --}}
+                  <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#exampleModal"><i class="fa fa-call"></i> Chat via WhatsApp</button>
                 </div>
               </div>
             </div>
@@ -158,7 +131,7 @@
 
         </div>
       </section><!-- End Studio Section -->
-
+      
       <!-- ======= Testimonials Section ======= -->
       <section id="testimonials" class="testimonials">
         <div class="container">
@@ -178,6 +151,58 @@
 
         </div>
       </section><!-- End Testimonials Section -->
+      <!-- Modal -->
+      {!! Form::open(['url' => 'whatsapp', 'files' => true]) !!}
+      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              Chat WhatsApp
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              @if ($errors->any())
+                <div class="form-group {{ $errors->has('id_studio') ? 'has-error' : 'has-success' }}">
+              @else
+                <div class="form-group">
+              @endif
+                Untuk mendapatkan notifikasi (khusus pengguna pertama) klik <a href="https://wa.me/14155238886?text=join%20forget-brick" target="_blank"/>disini</a><br> 
+		{!! Form::label('id_studio', 'Studio:', ['class' => 'control-label']) !!}
+                @if(count($list_studio) > 0)
+                  {!! Form::select('id_studio', $list_studio, null, ['class' => 'form-control', 'id' => 'id_studio', 'placeholder' => 'Pilih Studio', 'required']) !!}
+                @else
+                  <p>Tidak ada pilihan studio!</p>
+              @endif
+
+              @if ($errors->has('id_studio'))
+                <span class="help-block">{{ $errors->first('id_studio') }}</span>
+              @endif
+                </div>
+
+              @if ($errors->any())
+                <div class="form-group {{ $errors->has('nomor_telefon') ? 'has-error' : 'has-success' }}">
+              @else
+                <div class="form-group">
+              @endif
+                  {!! Form::label('nomor_telefon', 'Nomor WhatsApp:', ['class' => 'control-label']) !!}
+                  {!! Form::text('nomor_telefon', null, ['class' => 'form-control', 'data-inputmask'=>'"mask": ["+629999999999","+6299999999999","+62999999999999"]','data-mask'=>'null', 'required']) !!}
+                  @if ($errors->has('nomor_telefon'))
+                    <span class="help-block">{{ $errors->first('nomor_telefon') }}</span>
+                  @endif
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                {!! Form::submit("Kirim", ['class' => 'btn btn-primary']) !!}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      {!! Form::close() !!}
+      {{-- End Modal --}}
 
       <!-- ======= F.A.Q Section ======= -->
       {{-- <section id="faq" class="faq">
@@ -367,7 +392,9 @@
   <script src="{{ asset('bootstrap/plugins/datatables-buttons/js/buttons.html5.min.js')}}"></script>
   <script src="{{ asset('bootstrap/plugins/datatables-buttons/js/buttons.print.min.js')}}"></script>
   <script src="{{ asset('bootstrap/plugins/datatables-buttons/js/buttons.colVis.min.js')}}"></script>
-
+  <!-- InputMask -->
+  <script src="{{ asset('bootstrap/plugins/moment/moment.min.js')}}"></script>
+  <script src="{{ asset('bootstrap/plugins/inputmask/jquery.inputmask.min.js')}}"></script>
   <!-- Template Main JS File -->
   <script src="{{ asset('assets/js/main.js')}}"></script>
   <script>
@@ -390,6 +417,25 @@
             $('.total').filter(function() {return $(this).text() == v;}).next().text(i + 1);
         });
     });
+
+    function sendWA() {
+      var studio = $("#id_studio").val();
+      $.ajax({
+        url : +studio+'/getData',
+        type : "get",
+        dataType : 'json',
+        data : {},
+        success: function(data) {
+          var jBuka = parseInt(data.buka['']);
+          var jTutup = parseInt(data.tutup['']);
+          
+        }
+      });
+    }
+
+    $(function (){
+      $('[data-mask]').inputmask()
+    })
   </script>
 
 </body>

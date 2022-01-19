@@ -11,13 +11,18 @@ class Studio extends Model
         'nama_studio',
         'telefon',
         'jumlah_ruangan',
-        'fasilitas',
+        'fasilitas_alat',
+        'fasilitas_rekaman',
         'harga',
         'buka',
         'tutup',
         'id_users',
         'foto',
         'alamat',
+    ];
+
+    protected $dates = [
+        'created_at'
     ];
 
     public function konversi(){

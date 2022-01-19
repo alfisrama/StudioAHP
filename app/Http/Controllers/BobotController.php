@@ -14,7 +14,7 @@ class BobotController extends Controller
     
     public function index()
     {
-        $halaman = 'Bobot Kriteria';
+        $halaman = 'Kriteria';
         $bobot = Bobot::all();
         return view('bobot.index', compact('bobot', 'halaman'));
     }

@@ -6,12 +6,12 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1>Bobot</h1>
+                <h1>Kriteria</h1>
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="{{url('/')}}">Dashboard</a></li>
-                    <li class="breadcrumb-item active">Bobot</li>
+                    <li class="breadcrumb-item active">Kriteria</li>
                 </ol>
             </div>
         </div>
@@ -21,69 +21,9 @@
 <section class="content">
     <div class="container-fluid">
     @if (!empty($bobot))
-        <h5 class="mb-2">Klik angka untuk merubah nilai bobot</h5>
+        <h5 class="mb-2">Klik angka untuk merubah nilai kriteria</h5>
         <div class="row">
             @foreach($bobot as $bobot)
-            <div class="col-md-3 col-sm-6 col-12">
-                <div class="info-box">
-                    <span class="info-box-icon bg-info"><i class="fas fa-tools"></i></span>
-                    
-                    <div class="info-box-content">
-                        <span class="info-box-text">Kelengkapan Alat</span>
-                        <span class="info-box-number">
-                            <a href="#" data-name="kelengkapan_alat" class="kelengkapan_alat" data-type="text" data-pk="{{$bobot->id}}" data-url="api/bobot/{{$bobot->id}}/editbobot" data-title="Masukkan nilai">{{$bobot->kelengkapan_alat}}</a>
-                        </span>
-                    </div>
-                    <!-- /.info-box-content -->
-                </div>
-                <!-- /.info-box -->
-            </div>
-            <!-- /.col -->
-            <div class="col-md-3 col-sm-6 col-12">
-                <div class="info-box">
-                    <span class="info-box-icon bg-success"><i class="fas fa-guitar"></i></span>
-                    
-                    <div class="info-box-content">
-                        <span class="info-box-text">Kualitas Alat</span>
-                        <span class="info-box-number">
-                            <a href="#" data-name="kualitas_alat" class="kualitas_alat" data-type="text" data-pk="{{$bobot->id}}" data-url="api/bobot/{{$bobot->id}}/editbobot" data-title="Masukkan nilai">{{$bobot->kualitas_alat}}</a>
-                        </span>
-                    </div>
-                    <!-- /.info-box-content -->
-                </div>
-                <!-- /.info-box -->
-            </div>
-            <!-- /.col -->
-            <div class="col-md-3 col-sm-6 col-12">
-                <div class="info-box">
-                    <span class="info-box-icon bg-warning"><i class="fas fa-home"></i></span>
-                    
-                    <div class="info-box-content">
-                        <span class="info-box-text">Kualitas Ruangan</span>
-                        <span class="info-box-number">
-                            <a href="#" data-name="kualitas_ruangan" class="kualitas_ruangan" data-type="text" data-pk="{{$bobot->id}}" data-url="api/bobot/{{$bobot->id}}/editbobot" data-title="Masukkan nilai">{{$bobot->kualitas_ruangan}}</a>
-                        </span>
-                    </div>
-                    <!-- /.info-box-content -->
-                </div>
-                <!-- /.info-box -->
-            </div>
-            <!-- /.col -->
-            <div class="col-md-3 col-sm-6 col-12">
-                <div class="info-box">
-                    <span class="info-box-icon bg-danger"><i class="fas fa-dollar-sign"></i></span>
-                    
-                    <div class="info-box-content">
-                        <span class="info-box-text">Harga</span>
-                        <span class="info-box-number">
-                            <a href="#" data-name="harga" class="harga" data-type="text" data-pk="{{$bobot->id}}" data-url="api/bobot/{{$bobot->id}}/editbobot" data-title="Masukkan nilai">{{$bobot->harga}}</a>
-                        </span>
-                    </div>
-                    <!-- /.info-box-content -->
-                </div>
-                <!-- /.info-box -->
-            </div>
-            <!-- /.col -->
             <div class="col-md-3 col-sm-6 col-12">
                 <div class="info-box">
                     <span class="info-box-icon bg-info"><i class="fas fa-concierge-bell"></i></span>
@@ -99,14 +39,31 @@
                 <!-- /.info-box -->
             </div>
             <!-- /.col -->
+
+            <div class="col-md-3 col-sm-6 col-12">
+                <div class="info-box">
+                    <span class="info-box-icon bg-danger"><i class="fas fa-dollar-sign"></i></span>
+                    
+                    <div class="info-box-content">
+                        <span class="info-box-text">Harga</span>
+                        <span class="info-box-number">
+                            <a href="#" data-name="harga" class="harga" data-type="text" data-pk="{{$bobot->id}}" data-url="api/bobot/{{$bobot->id}}/editbobot" data-title="Masukkan nilai">{{$bobot->harga}}</a>
+                        </span>
+                    </div>
+                    <!-- /.info-box-content -->
+                </div>
+                <!-- /.info-box -->
+            </div>
+            <!-- /.col -->
+            
             <div class="col-md-3 col-sm-6 col-12">
                 <div class="info-box">
                     <span class="info-box-icon bg-success"><i class="far fa-flag"></i></span>
                     
                     <div class="info-box-content">
-                        <span class="info-box-text">Fasilitas</span>
+                        <span class="info-box-text">Fasilitas Alat</span>
                         <span class="info-box-number">
-                            <a href="#" data-name="fasilitas" class="fasilitas" data-type="text" data-pk="{{$bobot->id}}" data-url="api/bobot/{{$bobot->id}}/editbobot" data-title="Masukkan nilai">{{$bobot->fasilitas}}</a>
+                            <a href="#" data-name="fasilitas_alat" class="fasilitas_alat" data-type="text" data-pk="{{$bobot->id}}" data-url="api/bobot/{{$bobot->id}}/editbobot" data-title="Masukkan nilai">{{$bobot->fasilitas_alat}}</a>
                         </span>
                     </div>
                     <!-- /.info-box-content -->
@@ -131,12 +88,12 @@
             <!-- /.col -->
             <div class="col-md-3 col-sm-6 col-12">
                 <div class="info-box">
-                    <span class="info-box-icon bg-danger"><i class="far fa-star"></i></span>
+                    <span class="info-box-icon bg-success"><i class="far fa-flag"></i></span>
                     
                     <div class="info-box-content">
-                        <span class="info-box-text">Suasana Studio</span>
+                        <span class="info-box-text">Fasilitas Rekaman</span>
                         <span class="info-box-number">
-                            <a href="#" data-name="suasana_studio" class="suasana_studio" data-type="text" data-pk="{{$bobot->id}}" data-url="api/bobot/{{$bobot->id}}/editbobot" data-title="Masukkan nilai">{{$bobot->suasana_studio}}</a>
+                            <a href="#" data-name="fasilitas_rekaman" class="fasilitas_rekaman" data-type="text" data-pk="{{$bobot->id}}" data-url="api/bobot/{{$bobot->id}}/editbobot" data-title="Masukkan nilai">{{$bobot->fasilitas_rekaman}}</a>
                         </span>
                     </div>
                     <!-- /.info-box-content -->
@@ -158,14 +115,11 @@
 @section('script')
 <script>
     $(document).ready(function() {
-        $('.kelengkapan_alat').editable();
-        $('.kualitas_alat').editable();
-        $('.kualitas_ruangan').editable();
-        $('.harga').editable();
         $('.pelayanan').editable();
-        $('.fasilitas').editable();
+        $('.harga').editable();
+        $('.fasilitas_alat').editable();
         $('.waktu_operasional').editable();
-        $('.suasana_studio').editable();
+        $('.fasilitas_rekaman').editable();
     });    
 </script>
 @endsection

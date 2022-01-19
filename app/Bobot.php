@@ -8,13 +8,10 @@ class Bobot extends Model
 {
     protected $table = 'bobot';
     protected $fillable = [
-        'kelengkapan_alat',
-        'kualitas_alat',
-        'kualitas_ruangan',
-        'harga',
         'pelayanan',
-        'fasilitas',
+        'harga',
+        'fasilitas_alat',
         'waktu_operasional',
-        'suasana_studio',
+        'fasilitas_rekaman',
     ];
 }

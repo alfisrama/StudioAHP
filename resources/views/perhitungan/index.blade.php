@@ -37,27 +37,21 @@
                     <div class="card-body">
                         <table id="" class="display table table-responsive-md table-hover table-bordered table-striped" style="width:100%">
                             <thead>
-                                <tr  class="text-center">
-                                    <th>Kelengkapan Alat</th>
-                                    <th>Kualitas Alat</th>
-                                    <th>Kualitas Ruangan</th>
-                                    <th>Harga</th>
-                                    <th>Pelayanan</th>
-                                    <th>Fasilitas</th>
-                                    <th>Waktu Operasional</th>
-                                    <th>Suasana Studio</th>
+                                <tr class="text-center">
+                                    <th style="width: 20%">Pelayanan</th>
+                                    <th style="width: 20%">Harga</th>
+                                    <th style="width: 20%">Fasilitas Alat</th>
+                                    <th style="width: 20%">Waktu Operasional</th>
+                                    <th style="width: 20%">Fasilitas Rekaman</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr class="text-center">
-                                    <td>{{$bkelengkapan_alat}}</td>
-                                    <td>{{$bkualitas_alat}}</td>
-                                    <td>{{$bkualitas_ruangan}}</td>
-                                    <td>{{$bharga}}</td>
                                     <td>{{$bpelayanan}}</td>
-                                    <td>{{$bfasilitas}}</td>
+                                    <td>{{$bharga}}</td>
+                                    <td>{{$bfasilitas_alat}}</td>
                                     <td>{{$bwaktu_operasional}}</td>
-                                    <td>{{$bsuasana_studio}}</td>
+                                    <td>{{$bfasilitas_rekaman}}</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -81,46 +75,37 @@
                     <!-- /.card-header -->
                     <div class="card-body">
                         @if (!empty($konversiAlternatif))
-                        <table id="" class="display data-table table table-responsive table-hover table-bordered table-striped" style="width:100%">
+                        <table id="" class="display data-table table table-responsive-md table-hover table-bordered table-striped" style="width:100%">
                             <thead>
                                 <tr class="text-center">
-                                    <th>Nama Studio</th>
-                                    <th>Kelengkapan Alat</th>
-                                    <th>Kualitas Alat</th>
-                                    <th>Kualitas Ruangan</th>
-                                    <th>Harga</th>
-                                    <th>Pelayanan</th>
-                                    <th>Fasilitas</th>
-                                    <th>Waktu Operasional</th>
-                                    <th>Suasana Studio</th>
+                                    <th style="width: 25%" >Nama Studio</th>
+                                    <th style="width: 15%">Pelayanan</th>
+                                    <th style="width: 15%">Harga</th>
+                                    <th style="width: 15%">Fasilitas Alat</th>
+                                    <th style="width: 15%">Waktu Operasional</th>
+                                    <th style="width: 15%">Fasilitas Rekaman</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach($konversiAlternatif as $konversi)
-                                <tr class="text-center">
-                                    <td>{{$konversi->studio->nama_studio}}</td>
-                                    <td>{{$konversi->kelengkapan_alat}}</td>
-                                    <td>{{$konversi->kualitas_alat}}</td>
-                                    <td>{{$konversi->kualitas_ruangan}}</td>
-                                    <td>{{$konversi->harga}}</td>
-                                    <td>{{$konversi->pelayanan}}</td>
-                                    <td>{{$konversi->fasilitas}}</td>
-                                    <td>{{$konversi->waktu_operasional}}</td>
-                                    <td>{{$konversi->suasana_studio}}</td>
+                                <tr>
+                                    <td>{{$konversi->studio->nama_studio}}</td>                            
+                                    <td class="text-center">{{$konversi->pelayanan}}</td>
+                                    <td class="text-center">{{$konversi->harga}}</td>
+                                    <td class="text-center">{{$konversi->fasilitas_alat}}</td>
+                                    <td class="text-center">{{$konversi->waktu_operasional}}</td>
+                                    <td class="text-center">{{$konversi->fasilitas_rekaman}}</td>
                                 </tr>
                                 @endforeach
                             </tbody>
                             <tfoot>
                                 <tr class="text-center">
                                     <th>Jumlah</th>
-                                    <th>{{$sumKelengkapan_alat}}</th>
-                                    <th>{{$sumKualitas_alat}}</th>
-                                    <th>{{$sumKualitas_ruangan}}</th>
-                                    <th>{{$sumHarga}}</th>
                                     <th>{{$sumPelayanan}}</th>
-                                    <th>{{$sumFasilitas}}</th>
+                                    <th>{{$sumHarga}}</th>
+                                    <th>{{$sumFasilitas_alat}}</th>
                                     <th>{{$sumWaktu_operasional}}</th>
-                                    <th>{{$sumSuasana_studio}}</th>
+                                    <th>{{$sumFasilitas_rekaman}}</th>
                                 </tr>
                             </tfoot>
                         </table>
@@ -148,32 +133,26 @@
                     <!-- /.card-header -->
                     <div class="card-body">
                         {{-- @if (!empty($studio)) --}}
-                        <table id="" class="display table data-table table-responsive table-hover table-bordered table-striped" style="width:100%">
+                        <table id="" class="display table data-table table-responsive-md table-hover table-bordered table-striped" style="width:100%">
                             <thead>
                                 <tr class="text-center">
-                                    <th>Nama Studio</th>
-                                    <th>Kelengkapan Alat</th>
-                                    <th>Kualitas Alat</th>
-                                    <th>Kualitas Ruangan</th>
-                                    <th>Harga</th>
-                                    <th>Pelayanan</th>
-                                    <th>Fasilitas</th>
-                                    <th>Waktu Operasional</th>
-                                    <th>Suasana Studio</th>
+                                    <th style="width: 25%" >Nama Studio</th>
+                                    <th style="width: 15%">Pelayanan</th>
+                                    <th style="width: 15%">Harga</th>
+                                    <th style="width: 15%">Fasilitas Alat</th>
+                                    <th style="width: 15%">Waktu Operasional</th>
+                                    <th style="width: 15%">Fasilitas Rekaman</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($konversiPerbandingan as $konversi)
-                                <tr class="text-center">
+                                <tr>
                                     <td>{{$konversi->studio->nama_studio}}</td>
-                                    <td>{{round(($konversi->kelengkapan_alat)/$sumKelengkapan_alat,3)}}</td>
-                                    <td>{{round(($konversi->kualitas_alat)/$sumKualitas_alat,3)}}</td>
-                                    <td>{{round(($konversi->kualitas_ruangan)/$sumKualitas_ruangan,3)}}</td>
-                                    <td>{{round(($konversi->harga)/$sumHarga,3)}}</td>
-                                    <td>{{round(($konversi->pelayanan)/$sumPelayanan,3)}}</td>
-                                    <td>{{round(($konversi->fasilitas)/$sumFasilitas,3)}}</td>
-                                    <td>{{round(($konversi->waktu_operasional)/$sumWaktu_operasional,3)}}</td>
-                                    <td>{{round(($konversi->suasana_studio)/$sumSuasana_studio,3)}}</td>
+                                    <td class="text-center">{{round(($konversi->pelayanan)/$sumPelayanan,3)}}</td>
+                                    <td class="text-center">{{round(($konversi->harga)/$sumHarga,3)}}</td>
+                                    <td class="text-center">{{round(($konversi->fasilitas_alat)/$sumFasilitas_alat,3)}}</td>
+                                    <td class="text-center">{{round(($konversi->waktu_operasional)/$sumWaktu_operasional,3)}}</td>
+                                    <td class="text-center">{{round(($konversi->fasilitas_rekaman)/$sumFasilitas_rekaman,3)}}</td>
                                 </tr>                                
                                 @endforeach
                             </tbody>
@@ -201,18 +180,15 @@
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
-                        <table id="table-ranking" class="display table table-responsive table-hover table-bordered table-striped" style="width:100%">
+                        <table id="table-ranking" class="display table table-responsive-md table-hover table-bordered table-striped" style="width:100%">
                             <thead>
                                 <tr class="text-center">
-                                    <th>Nama Studio</th>
-                                    <th>Kelengkapan Alat</th>
-                                    <th>Kualitas Alat</th>
-                                    <th>Kualitas Ruangan</th>
-                                    <th>Harga</th>
+                                    <th style="width: 20%">Nama Studio</th>
                                     <th>Pelayanan</th>
-                                    <th>Fasilitas</th>
+                                    <th>Harga</th>
+                                    <th>Fasilitas Alat</th>
                                     <th>Waktu Operasional</th>
-                                    <th>Suasana Studio</th>
+                                    <th>Fasilitas Rekaman</th>
                                     <th>Jumlah</th>
                                     <th>Rangking</th>                                    
                                 </tr>
@@ -222,18 +198,15 @@
                                 $a = 1;
                                 @endphp
                                 @foreach($konversiHasil as $konversi)
-                                <tr class="text-center">
+                                <tr>
                                     <td>{{$z = $konversi->studio->nama_studio}}</td>
-                                    <td>{{$a = round($bkelengkapan_alat*(($konversi->kelengkapan_alat)/$sumKelengkapan_alat),4)}}</td>
-                                    <td>{{$b = round($bkualitas_alat*(($konversi->kualitas_alat)/$sumKualitas_alat),4)}}</td>
-                                    <td>{{$c = round($bkualitas_ruangan*(($konversi->kualitas_ruangan)/$sumKualitas_ruangan),4)}}</td>
-                                    <td>{{$d = round($bharga*(($konversi->harga)/$sumHarga),4)}}</td>
-                                    <td>{{$e = round($bpelayanan*(($konversi->pelayanan)/$sumPelayanan),4)}}</td>
-                                    <td>{{$f = round($bfasilitas*(($konversi->fasilitas)/$sumFasilitas),4)}}</td>
-                                    <td>{{$g = round($bwaktu_operasional*(($konversi->waktu_operasional)/$sumWaktu_operasional),4)}}</td>
-                                    <td>{{$h = round($bsuasana_studio*(($konversi->suasana_studio)/$sumSuasana_studio),4)}}</td>
-                                    <td class="total bg-warning">{{$total = $a+$b+$c+$d+$e+$f+$g+$h}}</td>
-                                    <td class="rank bg-success"></td>
+                                    <td class="text-center">{{$a = round($bpelayanan*(($konversi->pelayanan)/$sumPelayanan),4)}}</td>
+                                    <td class="text-center">{{$b = round($bharga*(($konversi->harga)/$sumHarga),4)}}</td>
+                                    <td class="text-center">{{$c = round($bfasilitas_alat*(($konversi->fasilitas_alat)/$sumFasilitas_alat),4)}}</td>
+                                    <td class="text-center">{{$d = round($bwaktu_operasional*(($konversi->waktu_operasional)/$sumWaktu_operasional),4)}}</td>
+                                    <td class="text-center">{{$e = round($bfasilitas_rekaman*(($konversi->fasilitas_rekaman)/$sumFasilitas_rekaman),4)}}</td>
+                                    <td class="text-center total bg-warning">{{$total = $a+$b+$c+$d+$e}}</td>
+                                    <td class="text-center rank bg-success"></td>
                                 </tr>
                                 @endforeach
                             </tbody>
@@ -258,7 +231,7 @@
         $('#table-ranking').DataTable({
             "columnDefs": [{
                 "orderable": false,
-                "targets": [10]
+                "targets": [7]
             }],
         });
     });

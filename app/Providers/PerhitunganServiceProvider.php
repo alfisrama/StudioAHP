@@ -22,56 +22,41 @@ class PerhitunganServiceProvider extends ServiceProvider
         //bobot
         $bobot = Bobot::all();
         foreach ($bobot as $bobot) {
-            $bkelengkapan_alat  = $bobot->kelengkapan_alat;
-            $bkualitas_alat     = $bobot->kualitas_alat;
-            $bkualitas_ruangan  = $bobot->kualitas_ruangan;
-            $bharga             = $bobot->harga;
             $bpelayanan         = $bobot->pelayanan;
-            $bfasilitas         = $bobot->fasilitas;
+            $bharga             = $bobot->harga;
+            $bfasilitas_alat    = $bobot->fasilitas_alat;
             $bwaktu_operasional = $bobot->waktu_operasional;  
-            $bsuasana_studio    = $bobot->suasana_studio;   
+            $bfasilitas_rekaman    = $bobot->fasilitas_rekaman;   
         }
-        view()->share('bkelengkapan_alat',  $bkelengkapan_alat);
-        view()->share('bkualitas_alat',     $bkualitas_alat);
-        view()->share('bkualitas_ruangan',  $bkualitas_ruangan);
-        view()->share('bharga',             $bharga);
         view()->share('bpelayanan',         $bpelayanan);
-        view()->share('bfasilitas',         $bfasilitas);
+        view()->share('bharga',             $bharga);
+        view()->share('bfasilitas_alat',    $bfasilitas_alat);
         view()->share('bwaktu_operasional', $bwaktu_operasional);
-        view()->share('bsuasana_studio',    $bsuasana_studio);    
+        view()->share('bfasilitas_rekaman', $bfasilitas_rekaman);
 
         //Matriks perbandingan antar alternatif terhadap masing-masing kriteria
-        $sumKelengkapan_alat  = $konversi->sum('kelengkapan_alat');
-        $sumKualitas_alat     = $konversi->sum('kualitas_alat');
-        $sumKualitas_ruangan  = $konversi->sum('kualitas_ruangan');
-        $sumHarga             = $konversi->sum('harga');
         $sumPelayanan         = $konversi->sum('pelayanan');
-        $sumFasilitas         = $konversi->sum('fasilitas');
+        $sumHarga             = $konversi->sum('harga');
+        $sumFasilitas_alat    = $konversi->sum('fasilitas_alat');
         $sumWaktu_operasional = $konversi->sum('waktu_operasional');  
-        $sumSuasana_studio    = $konversi->sum('suasana_studio');
+        $sumFasilitas_rekaman = $konversi->sum('fasilitas_rekaman');
 
-        view()->share('sumKelengkapan_alat',  $sumKelengkapan_alat);
-        view()->share('sumKualitas_alat',     $sumKualitas_alat);
-        view()->share('sumKualitas_ruangan',  $sumKualitas_ruangan);
-        view()->share('sumHarga',             $sumHarga);
         view()->share('sumPelayanan',         $sumPelayanan);
-        view()->share('sumFasilitas',         $sumFasilitas);
+        view()->share('sumHarga',             $sumHarga);
+        view()->share('sumFasilitas_alat',    $sumFasilitas_alat);
         view()->share('sumWaktu_operasional', $sumWaktu_operasional);
-        view()->share('sumSuasana_studio',    $sumSuasana_studio);        
+        view()->share('sumFasilitas_rekaman', $sumFasilitas_rekaman);        
 
         // perbandingan antar alternatif
         
         $konversi = Konversi::all();
         foreach ($konversi as $konversi) {
             $aNama_studio       = $konversi->studio->nama_studio;
-            $aKelengkapan_alat  = ($konversi->kelengkapan_alat)/$sumKelengkapan_alat;
-            $aKualitas_alat     = ($konversi->kualitas_alat)/$sumKualitas_alat;
-            $aKualitas_ruangan  = ($konversi->kualitas_ruangan)/$sumKualitas_ruangan;
-            $aHarga             = ($konversi->harga)/$sumHarga;
             $aPelayanan         = ($konversi->pelayanan)/$sumPelayanan;
-            $aFasilitas         = ($konversi->fasilitas)/$sumFasilitas;
+            $aHarga             = ($konversi->harga)/$sumHarga;
+            $aFasilitas_alat    = ($konversi->fasilitas_alat)/$sumFasilitas_alat;
             $aWaktu_operasional = ($konversi->waktu_operasional)/$sumWaktu_operasional;
-            $aSuasana_studio    = ($konversi->suasana_studio)/$sumSuasana_studio;
+            $aFasilitas_rekaman = ($konversi->fasilitas_rekaman)/$sumFasilitas_rekaman;
         }
 
 

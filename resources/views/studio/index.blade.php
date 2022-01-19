@@ -30,18 +30,14 @@
                     <!-- /.card-header -->
                     <div class="card-body">
                         @if (!empty($studio))
-                        <table id="table-studio" class="display table table-responsive table-hover table-bordered table-striped" style="width:100%">
+                        <table id="table-studio" class="display table table-responsive-md table-hover table-bordered table-striped" style="width:100%">
                             <thead>
                                 <tr class="text-center">
                                     <th>Nama Studio</th>
                                     <th>Telefon</th>
-                                    <th>Jumlah Ruangan</th>
-                                    <th>Fasilitas</th>
-                                    <th>Harga</th>
-                                    <th>Buka</th>
-                                    <th>Tutup</th>
                                     <th>Operator</th>
                                     <th>Alamat</th>
+                                    <th>Ditambahkan</th>
                                     <th style="width: 10%">Aksi</th>
                                 </tr>
                             </thead>
@@ -50,27 +46,9 @@
                                 <tr>
                                     <td>{{$studio->nama_studio}}</td>
                                     <td>{{$studio->telefon}}</td>
-                                    <td class="text-center">{{$studio->jumlah_ruangan}}</td>
-                                    @php
-                                        $option = $studio->fasilitas;
-                                        if ($option == 1){
-                                            $fasilitas = "Latihan";
-                                        }else if ($option == 2){
-                                            $fasilitas = "Latihan + Rekaman Live";
-                                        }else if ($option == 3){
-                                            $fasilitas = "Latihan + Rekaman Live + Rekaman Tracking";
-                                        }else if ($option == 4){
-                                            $fasilitas = "Latihan + Rekaman Live + Rekaman Tracking + Mixing";
-                                        }else if ($option == 5){
-                                            $fasilitas = "Latihan + Rekaman Live + Rekaman Tracking + Mixing + Mastering";
-                                        }
-                                    @endphp
-                                    <td>{{$fasilitas}}</td>
-                                    <td>Rp {{$studio->harga}}.00</td>
-                                    <td class="text-center">{{\Carbon\Carbon::createFromFormat('H:i:s',$studio->buka)->format('H:i')}}</td>
-                                    <td class="text-center">{{\Carbon\Carbon::createFromFormat('H:i:s',$studio->tutup)->format('H:i')}}</td>
-                                    <td class="text-center">{{$studio->users->name}}</td>
+                                    <td>{{$studio->users->name}}</td>
                                     <td>{{$studio->alamat}}</td>
+                                    <td class="text-center">{{$studio->created_at->format('Y-m-d')}}</td>
                                     <td class="text-center">
                                         <a class="btn btn-sm btn-warning text-center" href="{{url('studio/'.$studio->id.'/edit')}}"><i class="fas fa-edit"></i></a>
                                         <a class="btn btn-danger btn-sm delete text-center" href="#" studio-id="{{$studio->id}}" studio-nama="{{$studio->nama_studio}}"><i class="fas fa-trash-alt"></i></a>
@@ -87,13 +65,9 @@
                                 <tr class="text-center">
                                     <th>Nama Studio</th>
                                     <th>Telefon</th>
-                                    <th>Jumlah Ruangan</th>
-                                    <th>Fasilitas</th>
-                                    <th>Harga</th>
-                                    <th>Buka</th>
-                                    <th>Tutup</th>
                                     <th>Operator</th>
                                     <th>Alamat</th>
+                                    <th>Ditambahkan</th>
                                     <th>Aksi</th>
                                 </tr>
                             </tfoot>
@@ -121,8 +95,9 @@
         $('#table-studio').DataTable({
             "columnDefs": [{
                 "orderable": false,
-                "targets": [9]
+                "targets": [5]
             }],
+            "order": [[ 4, 'desc' ]],
         });
     });
 
